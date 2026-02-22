@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Industry;
 use App\Models\Inquiry;
 use App\Models\Lead;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\SiteContent;
-use App\Models\Specifications;
+use App\Models\Specification;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -99,10 +100,35 @@ class HomeController extends Controller
         // $site_data = SiteContent::get();
         // dd($site_data);
 
-        Slider::factory()->create();
-        $slider_data = Slider::get();
-        dd($slider_data);
+        // Slider::factory()->create();
+        // $slider_data = Slider::get();
+        // dd($slider_data);
         
+        // Industry::factory()->create();
+        // $industry_data = Industry::get();
+        // dd($industry_data);
+        
+        // Lead::factory()->create();
+        // $lead_data = lead::get();
+        // dd($lead_data);
+        
+        // Specification::factory()->create();
+        // $spec_data = Specification::get();
+        // dd($spec_data);
+        
+        // $product_data = Product::factory()
+        // ->hasSpecification(5)
+        // ->hasImages(5)
+        // ->create();
+        
+        // $product_data = Product::factory()
+        // ->for(Specification::factory())
+        // ->has(ProductImage::factory(5), 'images')
+        // ->create();
+        
+        $product_data_created = Product::with(['specification', 'images'])->get();
+        dd( $product_data_created);
+
         return view('index');
     }
 }
