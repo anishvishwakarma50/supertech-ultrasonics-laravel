@@ -17,7 +17,7 @@ class Lead extends Model
     ];
 
     // Lead has Many Inquiries
-    public function Inquiries(): HasMany
+    public function inquiries(): HasMany
     {
         return $this->hasMany(Inquiry::class);
     }

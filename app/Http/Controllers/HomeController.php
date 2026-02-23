@@ -126,9 +126,18 @@ class HomeController extends Controller
         // ->has(ProductImage::factory(5), 'images')
         // ->create();
         
-        $product_data_created = Product::with(['specification', 'images'])->get();
-        dd( $product_data_created);
+        // $product_data_created = Product::with(['specification', 'images'])->get();
+        // dd( $product_data_created);
 
+        Inquiry::factory()
+        ->for(Lead::factory())
+        ->for(Product::factory()
+            ->for(Specification::factory()))
+        ->create();
+
+        // Fetch created data
+        $pd = Inquiry::with(['lead','product'])->get();
+        dd($pd);
         return view('index');
     }
 }
