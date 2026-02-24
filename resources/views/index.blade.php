@@ -202,9 +202,9 @@
                     </div>
                     <div class="row">
                         {{-- here i stopped after creating component of product-card --}}
-                        @for ($i = 1; $i <= 4; $i++)
-                            <x-product-card />
-                        @endfor
+                        @foreach ($products as $product)
+                            <x-product-card :$product />
+                        @endforeach
                         <div class="col-xl-3 col-lg-3 col-md-4">
                             <div class="blog-wrapper mb-30 d-flex flex-end">
                                 <a href="blog-details.html" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">

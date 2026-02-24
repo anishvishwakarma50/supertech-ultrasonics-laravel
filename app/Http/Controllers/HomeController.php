@@ -11,6 +11,7 @@ use App\Models\SiteContent;
 use App\Models\Specification;
 use App\Models\Slider;
 use App\Models\Testimonial;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -129,15 +130,28 @@ class HomeController extends Controller
         // $product_data_created = Product::with(['specification', 'images'])->get();
         // dd( $product_data_created);
 
-        Inquiry::factory()
-        ->for(Lead::factory())
-        ->for(Product::factory()
-            ->for(Specification::factory()))
-        ->create();
+        // Inquiry::factory()
+        // ->for(Lead::factory())
+        // ->for(Product::factory()
+        //     ->for(Specification::factory()))
+        // ->create();
 
-        // Fetch created data
-        $pd = Inquiry::with(['lead','product'])->get();
-        dd($pd);
-        return view('index');
+        // // Fetch created data
+        // $pd = Inquiry::with(['lead','product'])->get();
+        // dd($pd);
+
+        // Product::factory()
+        // ->count(5)
+        // ->has(ProductImage::factory()
+        // ->sequence(fn(Sequence $sequence) => ['position' => $sequence->index % 5 + 1])
+        // ,'images')
+        // ->for(Specification::factory())
+        // ->create();
+
+        // product to pass it to view
+        $products = Product::limit(4)->get();
+        // dd($products);
+
+        return view('index', ['products' => $products]);
     }
 }
