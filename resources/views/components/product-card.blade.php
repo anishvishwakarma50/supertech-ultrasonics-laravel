@@ -9,7 +9,7 @@
         <div class="blog-text">
             <h4><a href="blog-details.html">{{ $product->title }}</a></h4>
             <div class="d-flex justify-content-center gap-3 mt-3">
-                <a href="{{ route('product.show', $product ) }}" class="btn btn-info btn-rounded m-2">
+                <a href="{{ route('product-details', $product ) }}" class="btn btn-info btn-rounded m-2">
                     <span class="text-white">Read More</span> 
                     <i class="dripicons-arrow-thin-right"></i>
                 </a>

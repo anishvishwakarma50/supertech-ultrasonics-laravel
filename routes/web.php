@@ -3,10 +3,12 @@
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController as ProController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
+Route::get('/product/{id}', [ProController::class, 'showProduct'])->name('product-details');
 
 //#################################################################
 // admin routes
