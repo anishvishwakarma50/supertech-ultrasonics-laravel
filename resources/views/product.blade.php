@@ -1,3 +1,4 @@
+{{-- {{ dd($product_data) }} --}}
 <x-layout.app title="Super Tech Ultrasonic">
     <x-slot:content>
         <style>
@@ -94,72 +95,15 @@
                                 </div>
                             </div>
 
-                            <h3 class="product-title mb-10">Premium Ultrasonic Cleaning Machine</h3>
+                            <h3 class="product-title mb-10">{{ $product_data->title }}</h3>
                             <div class="postbox__text bg-none">
                                 <div class="post-meta mb-15">
                                     <span><i class="far fa-calendar-check"></i> September 15, 2018 </span>
                                     <span><a href="#"><i class="far fa-user"></i> Diboli B. Joly</a></span>
                                     <span><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span>
                                 </div>
-                                <h3 class="blog-title">
-                                    How Frontend Developers Can Help To Bridge Gap Be
-                                    tween Desigers And Developers
-                                </h3>
                                 <div class="post-text mb-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea commodo.</p>
-                                    <p>Bccaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                        laborum. Sed ut perspiciatis
-                                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-                                        aperiam, eaque ipsa quae ab
-                                        illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                                        enim ipsam voluptatem quia
-                                        voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-                                        ratione voluptatem sequi
-                                        nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                        adipisci velit, sed quia non
-                                        numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                        voluptatem.</p>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur
-                                            cing elit, sed do eiusmod tempor.</p>
-                                        <footer>- Rosalina Pong</footer>
-                                    </blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                        nulla pariatur. Excepteur sint
-                                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
-
-                                    <div class="blog-inner-img mb-30 mt-30">
-                                        <img src="assets/img/blog/b-04.html" alt="blog image">
-                                    </div>
-
-                                    <div class="inner-content">
-                                        <h4>A cleansing hot shower or bath</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                            aliquip ex ea commodo consequat.
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                            fugiat nulla pariatur. Excepteur
-                                            sint
-                                            occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                                    </div>
-                                    <div class="inner-content">
-                                        <h4>Setting the mood with incense</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                            aliquip ex ea commodo consequat.
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                            fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                                    </div>
+                                    <p>{{ $product_data->description }}</p>
                                 </div>
                                 <div class="row mt-50">
                                     <div class="col-xl-8 col-lg-8 col-md-8 mb-15">
