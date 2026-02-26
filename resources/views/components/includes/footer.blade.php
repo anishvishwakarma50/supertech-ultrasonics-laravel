@@ -21,14 +21,14 @@
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="footer-logo text-center text-md-right">
-                        <a href="index-2.html"><img src="assets/img/logo/Super Tech.svg" alt=""></a>
+                        <a href="index-2.html"><img src="{{ asset('assets/img/logo/Super Tech.svg') }}" alt=""></a>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="footer-widget-area pt-75 pb-30" style="background-image:url(assets/img/bg/footer.jpg)">
+    <div class="footer-widget-area pt-75 pb-30" style="background-image:url({{ asset('assets/img/bg/footer.jpg') }})">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">

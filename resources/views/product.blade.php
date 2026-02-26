@@ -1,5 +1,5 @@
 {{-- {{ dd($product_data) }} --}}
-<x-layout.app title="Super Tech Ultrasonic">
+<x-layout.app title="{{ $product_data->title }}">
     <x-slot:content>
         <style>
             #productCarousel .carousel-item img {
@@ -53,47 +53,12 @@
         </div>
         <!-- breadcrumb-area-end -->
         <!-- blog-area start -->
-        <div class="blog-area pt-120 pb-80">
+        <div class="blog-area pt-40 pb-80">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <article class="postbox post format-image mb-40">
-                            <div class="product-gallery mb-35">
-                                <div id="productCarousel" class="carousel slide" data-ride="false">
-                                    <div class="carousel-inner shadow-sm rounded">
-                                        <div class="carousel-item active">
-                                            <img src="assets/img/portfolio/p1.jpg" class="d-block w-100" alt="portfolio Front">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/img/portfolio/p2.jpg" class="d-block w-100" alt="portfolio Side">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/img/portfolio/p3.jpg" class="d-block w-100" alt="portfolio Detail">
-                                        </div>
-                                    </div>
-                                    
-                                    <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-
-                                <div class="row gx-2 mt-3 justify-content-center thumb-row">
-                                    <div class="col-2">
-                                        <img src="assets/img/portfolio/p1.jpg" class="img-thumbnail active-thumb shadow-sm" data-target="#productCarousel" data-slide-to="0">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="assets/img/portfolio/p2.jpg" class="img-thumbnail shadow-sm" data-target="#productCarousel" data-slide-to="1">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="assets/img/portfolio/p3.jpg" class="img-thumbnail shadow-sm" data-target="#productCarousel" data-slide-to="2">
-                                    </div>
-                                </div>
-                            </div>
+                            <x-product-carausel :images="$product_data->images" />
 
                             <h3 class="product-title mb-10">{{ $product_data->title }}</h3>
                             <div class="postbox__text bg-none">
@@ -312,28 +277,8 @@
                                 </li>
                             </ul>
                         </div> -->
-                        <div class="widget mb-40">
-                            <div class="widget-title-box mb-30">
-                                <h3 class="widget-title">Categories</h3>
-                            </div>
-                            <ul class="cat">
-                                <li>
-                                    <a href="#">Lifestyle <span class="f-right">78</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Travel <span class="f-right">42</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion <span class="f-right">32</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Music <span class="f-right">85</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Branding <span class="f-right">05</span></a>
-                                </li>
-                            </ul>
-                        </div>
+                        {{-- Specification --}}
+                        <x-product-specification :specification="$product_data->specification" />
                         <div class="widget mb-40">
                             <div class="widget-title-box mb-30">
                                 <h3 class="widget-title">Social Profile</h3>
@@ -367,7 +312,7 @@
                         </div>
                         <div class="widget mb-40 p-0 b-0">
                             <div class="banner-widget">
-                                <a href="#"><img src="assets/img/blog/banner.html" alt=""></a>
+                                <a href="#"><img src="{{ asset('assets/img/blog/banner.html') }}" alt=""></a>
                             </div>
                         </div>
                     </div>

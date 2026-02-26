@@ -71,7 +71,7 @@
          <!-- Slider Revolution core JavaScript files -->
          <script type="text/javascript" src="{{asset('assets/rs/js/jquery.themepunch.tools.min.js')}}"></script>
          <script type="text/javascript" src="{{asset('assets/rs/js/jquery.themepunch.revolution.min.js')}}"></script>
-         <script src="assets/rs/js/revolution-active.js"></script>
+         <script src="{{ asset('assets/rs/js/revolution-active.js') }}"></script>
 
          <!-- Slider Revolution extension scripts. ONLY NEEDED FOR LOCAL TESTING -->
          <script type="text/javascript" src="{{asset('assets/rs/js/extensions/revolution.extension.actions.min.js')}}"></script>

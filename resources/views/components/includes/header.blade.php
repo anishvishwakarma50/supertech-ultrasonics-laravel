@@ -6,7 +6,6 @@
                     <div class="header-info">
                         <span class="mail-header-icon"><i class="far fa-clock"></i> Mon - Fri: 9:00 - 19:00 / Closed on Weekends</span>
                         <span class="mail-header-icon"><i class="far fa-phone"></i> Flat 20, Reynolds USA</span>
-                        <span><i class="far fa-envelope-open"></i> <a href="https://www.devsnews.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f6c6a6f6f706d6b5f6d727e7673317c7072">[email&#160;protected]</a></span>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3">
@@ -21,7 +20,7 @@
                         </div>
                         <div class="header-lang  pos-rel f-right">
                             <div class="lang-icon">
-                                <img src="assets/img/icon/flag.png" alt="">
+                                <img src="{{ asset('assets/img/icon/flag.png') }}" alt="">
                                 <a href="#">English <i class="far fa-angle-down"></i></a>
                             </div>
                             <ul class="header-lang-list">
@@ -41,7 +40,7 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-3 d-flex align-items-center">
                     <div class="logo">
-                        <a href="index-2.html"><img src="assets/img/logo/Super Tech.svg" alt="" /></a>
+                        <a href="index-2.html"><img src="{{ asset('assets/img/logo/Super Tech.svg') }}" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7">
@@ -78,7 +77,7 @@
                     <div class="header-right">
                         <div class="header-right-info home1-right-info f-right d-none d-xl-block">
                             <div class="heder-right-icon f-left">
-                                <img src="assets/img/icon/phone.png" alt="">
+                                <img src="{{ asset('assets/img/icon/phone.png') }}" alt="">
                             </div>
                             <div class="header-right-text">
                                 <a class="btn" href="#"> <span>Get a Quote</span></a>
@@ -103,7 +102,7 @@
         </div>
         <div class="logo-side mb-30">
             <a href="index-2.html">
-                <img src="assets/img/logo/white.png" alt="" />
+                <img src="{{ asset('assets/img/logo/white.png') }}" alt="" />
             </a>
         </div>
         <div class="side-info mb-30">
@@ -119,28 +118,26 @@
             </div>
             <div class="contact-list mb-30">
                 <h4>Email Address</h4>
-                <p><a href="https://www.devsnews.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="224b4c444d62475a434f524e470c414d4f">[email&#160;protected]</a></p>
-                <p><a href="https://www.devsnews.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e18499808c918d84cf8c80888da189948ccf828e8c">[email&#160;protected]</a></p>
             </div>
         </div>
         <div class="instagram">
             <a href="#">
-                <img src="assets/img/portfolio/p1.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p1.jpg')}}" alt="">
             </a>
             <a href="#">
-                <img src="assets/img/portfolio/p2.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p2.jpg')}}" alt="">
             </a>
             <a href="#">
-                <img src="assets/img/portfolio/p3.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p3.jpg')}}" alt="">
             </a>
             <a href="#">
-                <img src="assets/img/portfolio/p4.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p4.jpg')}}" alt="">
             </a>
             <a href="#">
-                <img src="assets/img/portfolio/p5.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p5.jpg')}}" alt="">
             </a>
             <a href="#">
-                <img src="assets/img/portfolio/p6.jpg" alt="">
+                <img src="{{asset('assets/img/portfolio/p6.jpg')}}" alt="">
             </a>
         </div>
         <div class="social-icon-right mt-20">
