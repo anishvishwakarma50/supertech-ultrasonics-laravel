@@ -151,7 +151,11 @@ class HomeController extends Controller
         // product to pass it to view
         $products = Product::limit(4)->get();
         // dd($products);
+        $testimonials = Testimonial::limit(10)->get();
+        // dd($testimonials);
+        $industries = Industry::get();
+        // dd($industries);
 
-        return view('index', ['products' => $products]);
+        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries]);
     }
 }

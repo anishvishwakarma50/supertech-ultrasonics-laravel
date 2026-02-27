@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     // Show Product to Specific Id
-    public function showProduct(string $id) {
+    public function showProduct(string $id, string $title) {
         $product_data = Product::with(['images', 'specification'])->find($id);
         // dd($product_data);
         // dd($product_data->specification);
