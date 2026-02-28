@@ -24,6 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        //drop
+        Schema::dropIfExists('site_contents');
     }
 };

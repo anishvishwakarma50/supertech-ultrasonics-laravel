@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('comment');
             $table->string('designation');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

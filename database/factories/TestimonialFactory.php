@@ -24,6 +24,7 @@ class TestimonialFactory extends Factory
             'name'=> Fake()->name(),
             'comment' => Fake()->word(),
             'designation' => Fake()->companySuffix(),
+            'image_path' => Fake()->imageUrl(),
         ];
     }
 }

@@ -12,7 +12,8 @@ class Testimonial extends Model
     protected $fillable = [
         'name',
         'comment',
-        'designation'
+        'designation',
+        'image_path'
     ];
 
 }
