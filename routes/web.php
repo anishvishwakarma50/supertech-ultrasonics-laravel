@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -25,7 +26,11 @@ Route::get('/admin/add-product', function (){
 });
 
 // Auth Route
-Route::get('/admin/login', [LoginController::class, 'create']);
+Route::get('/admin/login', function () {
+    return view('admin.auth.login');
+})->name('login');
+Route::post('/admin/login', [AuthController::class, 'login']);
+Route::get('/admin/logout', [AuthController::class, 'logout']);
 
 // Product Route
 Route::resource('admin/product', ProductController::class);
