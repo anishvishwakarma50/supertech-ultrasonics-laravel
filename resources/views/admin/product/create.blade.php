@@ -14,65 +14,75 @@
 
                 <form id="productForm" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                    <!-- Product Name -->
-                    <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Machine Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <!-- Product Name -->
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Machine Name</label>
+                            <input type="text" class="form-control" id="name" name="title" required>
+                        </div>
+
+                        <!-- Moq -->
+                        <div class="col-md-6 mb-3">
+                            <label for="moq" class="form-label">MOQ</label>
+                            <input type="text" class="form-control" id="moq" name="moq" placeholder="2" required>
+                        </div>
                     </div>
 
-                    <!-- Model -->
-                    <div class="col-md-6 mb-3">
-                        <label for="model" class="form-label">Model Number</label>
-                        <input type="text" class="form-control" id="model" name="model" placeholder="e.g. STU-25" required>
+                    {{-- Decription --}}
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description"></textarea>
                     </div>
+                    
+                    <h5 class="">Specification</h5>
+                    {{-- Specification Details --}}
+                    <div class="row">
+                        <!-- Usage -->
+                        <div class="col-md-6 mb-3">
+                            <label for="usage" class="form-label">Usage</label>
+                            <input type="text" class="form-control" id="usage" name="usage">
+                        </div>
+
+                        <!-- Material -->
+                        <div class="col-md-6 mb-3">
+                            <label for="material" class="form-label">Material</label>
+                            <input type="text" class="form-control" id="material" name="material">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Weight -->
+                        <div class="col-md-6 mb-3">
+                            <label for="weight" class="form-label">Weight</label>
+                            <input type="number" class="form-control" id="weight" name="weight">
+                        </div>
+
+                        <!-- Voltage -->
+                        <div class="col-md-6 mb-3">
+                            <label for="voltage" class="form-label">Voltage (Watts)</label>
+                            <input type="text" class="form-control" id="voltage" name="voltage">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Color -->
+                        <div class="col-md-6 mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="color" name="color">
+                        </div>
+
+                        <!-- Frequency -->
+                        <div class="col-md-6 mb-3">
+                            <label for="frequency" class="form-label">Frequency</label>
+                            <input type="text" class="form-control" id="frequency" name="frequency">
+                        </div>
                     </div>
 
                     <div class="row">
-                    <!-- Capacity -->
-                    <div class="col-md-6 mb-3">
-                        <label for="capacity" class="form-label">Capacity (Litres)</label>
-                        <input type="number" step="0.01" class="form-control" id="capacity" name="capacity">
-                    </div>
-
-                    <!-- Power -->
-                    <div class="col-md-6 mb-3">
-                        <label for="power" class="form-label">Power (Watts)</label>
-                        <input type="number" class="form-control" id="power" name="power">
-                    </div>
-                    </div>
-
-                    <!-- Industry Dropdown -->
-                    <div class="mb-3">
-                    <label for="industry_id" class="form-label">Industry</label>
-                    <select class="form-select" id="industry_id" name="industry_id">
-                        <option value="">-- Select Industry --</option>
-                    </select>
-                    </div>
-
-                    <!-- Short Description -->
-                    <div class="mb-3">
-                    <label for="description" class="form-label">Short Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                    </div>
-
-                    <!-- Specification (Summernote) -->
-                    <div class="mb-3">
-                    <label for="specification" class="form-label">Detailed Specification</label>
-                    <textarea id="specification" name="specification"></textarea>
-                    </div>
-
-                    <div class="row">
-                    <!-- Price Min -->
-                    <div class="col-md-6 mb-3">
-                        <label for="price_min" class="form-label">Minimum Price</label>
-                        <input type="number" step="0.01" class="form-control" id="price_min" name="price_min">
-                    </div>
-
-                    <!-- Price Max -->
-                    <div class="col-md-6 mb-3">
-                        <label for="price_max" class="form-label">Maximum Price</label>
-                        <input type="number" step="0.01" class="form-control" id="price_max" name="price_max">
-                    </div>
+                        <!-- Temperature -->
+                        <div class="col-md-6 mb-3">
+                            <label for="temperature" class="form-label">Tempreature</label>
+                            <input type="number" step="0.01" class="form-control" id="temperature" name="temperature">
+                        </div>
                     </div>
 
                     <!-- Product Image -->

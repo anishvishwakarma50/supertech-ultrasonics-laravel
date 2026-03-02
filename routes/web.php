@@ -18,7 +18,7 @@ Route::get('/product/{id}/{title}', [ProController::class, 'showProduct'])->name
 // dashboard
 Route::get('/admin/dashboard', function (){
     return view('admin.index');
-});
+})->middleware('auth');
 
 // add-product
 Route::get('/admin/add-product', function (){
