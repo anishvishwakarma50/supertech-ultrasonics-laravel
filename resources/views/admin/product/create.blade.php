@@ -12,7 +12,8 @@
                 <!-- Status message container -->
                 <div id="statusMessage" class="alert d-none"></div>
 
-                <form id="productForm" method="POST" enctype="multipart/form-data">
+                <form id="productForm" method="POST" action="{{ route('product.store') }}">
+                    @csrf
                     <div class="row">
                         <!-- Product Name -->
                         <div class="col-md-6 mb-3">
@@ -86,10 +87,10 @@
                     </div>
 
                     <!-- Product Image -->
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                     <label for="image_url" class="form-label">Product Image</label>
                     <input type="file" class="form-control" id="image_url" name="image_url" accept="image/*">
-                    </div>
+                    </div> --}}
 
 
                     <!-- Submit -->
