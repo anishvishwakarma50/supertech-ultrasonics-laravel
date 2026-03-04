@@ -14,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view("admin.product.index");
+        // right now we don't have the image of Machine
+        $products = Product::with(['specification'])->orderByDesc('created_at')->get();
+        // dd($products);
+        return view("admin.product.index", ['products' => $products]);
     }
 
     /**

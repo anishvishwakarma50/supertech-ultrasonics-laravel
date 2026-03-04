@@ -4,6 +4,11 @@
   <x-slot:content>
     <div class="content-wrapper">
         <div class="row">
+            @if(session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
             <div class="card-body">
@@ -22,75 +27,37 @@
                     <tr>
                         <th>Image</th>
                         <th>Product Name</th>
-                        <th>Model</th>
-                        <th>Capacity (L)</th>
-                        <th>Power (W)</th>
-                        <th>Price Range (₹)</th>
-                        <th>Industry</th>
+                        <th>MOQ</th>
+                        <th>Weight</th>
+                        <th>Frequency</th>
+                        <th>Voltage</th>
+                        <th>Color</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img src="images/product1.jpg" class="product-img" alt="Ultrasonic Cleaner 10L">
-                            </td>
-                            <td>Ultrasonic Cleaner 10L</td>
-                            <td>UC-10</td>
-                            <td>10</td>
-                            <td>500</td>
-                            <td>₹25,000 - ₹30,000</td>
-                            <td>Automobile</td>
-                            <td>
-                                <span class="badge badge-success status-badge">Active</span>
-                            </td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-primary view-btn" data-id="1">View</button>
-                                <button class="btn btn-sm btn-info edit-btn" data-id="1">Edit</button>
-                                <button class="btn btn-sm btn-danger delete-btn" data-id="1">Delete</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <img src="images/product2.jpg" class="product-img" alt="Ultrasonic Cleaner 20L">
-                            </td>
-                            <td>Ultrasonic Cleaner 20L</td>
-                            <td>UC-20</td>
-                            <td>20</td>
-                            <td>800</td>
-                            <td>₹45,000 - ₹55,000</td>
-                            <td>Medical</td>
-                            <td>
-                                <span class="badge badge-success status-badge">Active</span>
-                            </td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-primary view-btn" data-id="2">View</button>
-                                <button class="btn btn-sm btn-info edit-btn" data-id="2">Edit</button>
-                                <button class="btn btn-sm btn-danger delete-btn" data-id="2">Delete</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <img src="images/product3.jpg" class="product-img" alt="Ultrasonic Cleaner 30L">
-                            </td>
-                            <td>Ultrasonic Cleaner 30L</td>
-                            <td>UC-30</td>
-                            <td>30</td>
-                            <td>1200</td>
-                            <td>₹70,000 - ₹85,000</td>
-                            <td>Electronics</td>
-                            <td>
-                                <span class="badge badge-warning status-badge">Inactive</span>
-                            </td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-primary view-btn" data-id="3">View</button>
-                                <button class="btn btn-sm btn-info edit-btn" data-id="3">Edit</button>
-                                <button class="btn btn-sm btn-danger delete-btn" data-id="3">Delete</button>
-                            </td>
-                        </tr>
+                        @foreach ($products as $product)
+                            <tr>
+                                <td>
+                                    <img src="images/product1.jpg" class="product-img" alt="{{ $product->title }}">
+                                </td>
+                                <td>{{ $product->title }}</td>
+                                <td>{{ $product->moq }}</td>
+                                <td>{{ $product->specification->weight }}</td>
+                                <td>{{ $product->specification->frequency }}</td>
+                                <td>{{ $product->specification->voltage }}</td>
+                                <td>{{ $product->specification->color }}</td>
+                                <td>
+                                    <span class="badge badge-success status-badge">Active</span>
+                                </td>
+                                <td class="action-buttons">
+                                    <button class="btn btn-sm btn-primary view-btn" data-id="1">View</button>
+                                    <button class="btn btn-sm btn-info edit-btn" data-id="1">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="1">Delete</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 </div>
