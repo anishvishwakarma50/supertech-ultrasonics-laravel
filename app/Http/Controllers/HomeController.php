@@ -156,6 +156,9 @@ class HomeController extends Controller
         $industries = Industry::get();
         // dd($industries);
 
-        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries]);
+        // Site Content Data
+        $siteData = SiteContent::first();
+
+        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries, 'siteData' => $siteData]);
     }
 }

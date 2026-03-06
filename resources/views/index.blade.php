@@ -179,8 +179,7 @@
                             <div class="history-wrapper mb-30">
                                 <div class="history-content">
                                     <h4>Company History</h4>
-                                    <p>We specialize in crafting and exporting top-notch Industrial Cleaning Systems, Table Top Cleaners, Immersible Transducers, Ultrasonic Medical Cleaners, and more. Our diverse Ultrasonic Cleaning Solutions cater to precise cleaning needs across various industries.</p>
-                                    <a href="#">learn more <i class="far fa-long-arrow-right"></i></a>
+                                    <p>{{ $siteData->company_history }}</p>
                                 </div>
                             </div>
                         </div>
@@ -236,8 +235,8 @@
                                     <img src="assets/img/machines/Single_Chember.png" style="width:51rem;" alt="">
                                 </div>
                                 <div class="latest-services-text">
-                                    <h3>Building Construction</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natuser voluptatem accusantium doloremque laudant us totam rem aperiam eaque</p>
+                                    <h3>Ultrasonic Cleaning Machine Manufacturers</h3>
+                                    <p>{{ $siteData->what_we_do }}</p>
                                     <a class="b-btn btn-white" href="#"> <span>view details</span>  </a>
                                 </div>
                             </div>

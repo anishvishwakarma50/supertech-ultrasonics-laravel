@@ -22,13 +22,13 @@
                     {{-- Company History --}}
                     <div class="mb-3">
                         <label for="company_history" class="form-label">Company History</label>
-                        <textarea id="company_history" name="company_history"></textarea>
+                        <textarea id="company_history" name="company_history">{{ $siteData->company_history }}</textarea>
                     </div>
                     
                     {{-- Decription --}}
                     <div class="mb-3">
                         <label for="what_we_do" class="form-label">What We Do</label>
-                        <textarea id="what_we_do" name="what_we_do"></textarea>
+                        <textarea id="what_we_do" name="what_we_do">{{ $siteData->what_we_do }}</textarea>
                     </div>
                     
                     <!-- Submit -->
