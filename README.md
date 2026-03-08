@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Super Tech Ultrasonics Website</h1>
+<h1 align="center">SuperTech Ultrasonics Website</h1>
 
 <p align="center">
   A Laravel-based website developed for <strong>Super Tech Ultrasonics</strong>, a manufacturer of ultrasonic cleaning machines and industrial cleaning systems.
