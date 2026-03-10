@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\admin\ManageSiteController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TestimonialControkller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController as ProController;
@@ -40,3 +41,6 @@ Route::resource('admin/product', ProductController::class);
 Route::get('/admin/manage-content', [ManageSiteController::class, 'index'])->name('manage-content');
 // Store Site Content
 Route::post('/admin/manage-content/store', [ManageSiteController::class, 'store'])->name('store-content');
+
+// Testimonial Resource Route
+Route::resource('admin/testimonial', TestimonialControkller::class);
