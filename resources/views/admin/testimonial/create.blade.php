@@ -12,7 +12,7 @@
                 <!-- Status message container -->
                 <div id="statusMessage" class="alert d-none"></div>
 
-                <form id="testimonialForm" method="POST" action="{{ route('testimonial.store') }}">
+                <form id="testimonialForm" method="POST" enctype="multipart/form-data" action="{{ route('testimonial.store') }}">
                     @csrf
                     <div class="row">
                         <!-- Name -->
@@ -38,7 +38,7 @@
                         <!-- Image -->
                         <div class="col-md-6 mb-3">
                             <label for="image" class="form-label">Image</label>
-                            <input type="image" class="form-control" id="image" name="image">
+                            <input type="file" class="form-control" id="image" name="image">
                         </div>
                     </div>
 

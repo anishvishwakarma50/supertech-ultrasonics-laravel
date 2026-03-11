@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
-class TestimonialControkller extends Controller
+class TestimonialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +29,26 @@ class TestimonialControkller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'comment' => 'required',
+            'designation' => 'required',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+        // dd($test);
+
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('testimonials', 'public');
+        }
+
+        Testimonial::create([
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'designation' => $request->designation,
+            'image_path' => $path
+        ]);
+
+        dd('Data inserted Successfully');
     }
 
     /**
