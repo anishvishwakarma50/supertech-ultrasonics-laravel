@@ -45,9 +45,41 @@
                                     <span class="badge badge-success status-badge">Active</span>
                                 </td>
                                 <td class="action-buttons">
-                                    <button class="btn btn-sm btn-primary view-btn" data-id="1">View</button>
-                                    <button class="btn btn-sm btn-info edit-btn" data-id="1">Edit</button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="1">Delete</button>
+
+                                    <!-- View Button -->
+                                    <button 
+                                        class="btn btn-sm btn-primary view-btn"
+                                        data-name="{{ $testimonial->name }}"
+                                        data-designation="{{ $testimonial->designation }}"
+                                        data-comment="{{ $testimonial->comment }}"
+                                        data-image="{{ asset('storage/'.$testimonial->image_path) }}"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#testimonialModal"
+                                    >
+                                        View
+                                    </button>
+
+                                    <!-- Edit -->
+                                    <a href="{{ route('testimonial.edit', $testimonial->id) }}" 
+                                    class="btn btn-sm btn-info">
+                                        Edit
+                                    </a>
+
+                                    <!-- Delete -->
+                                    <form action="{{ route('testimonial.destroy', $testimonial->id) }}" 
+                                        method="POST" 
+                                        style="display:inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            Delete
+                                        </button>
+
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -111,5 +143,41 @@
 
     </div>
     <!-- content-wrapper ends -->
+
+    <script>
+        window.document.onload(() => {
+            const deleteButtons = document.querySelectorAll(".delete-btn");
+
+            const handleDelete(event) {
+                
+            }
+        })
+    </script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const viewButtons = document.querySelectorAll(".view-btn");
+
+            viewButtons.forEach(button => {
+
+                button.addEventListener("click", function () {
+
+                    document.getElementById("modalName").innerText = this.dataset.name;
+
+                    document.getElementById("modalDesignation").innerText = this.dataset.designation;
+
+                    document.getElementById("modalComment").innerText = this.dataset.comment;
+
+                    document.getElementById("modalImage").src = this.dataset.image;
+
+                });
+
+            });
+
+        });
+
+    </script>
   </x-slot:content>
 </x-admin.layout.app>
