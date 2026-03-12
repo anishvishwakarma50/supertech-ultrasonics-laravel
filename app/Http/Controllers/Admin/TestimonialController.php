@@ -13,7 +13,9 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonials = Testimonial::limit(10)->get();
+        // dd($testimonials);
+        return view('admin.testimonial.index', ['testimonials' => $testimonials]);
     }
 
     /**
