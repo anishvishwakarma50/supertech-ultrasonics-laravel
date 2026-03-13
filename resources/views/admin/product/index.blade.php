@@ -54,7 +54,19 @@
                                 <td class="action-buttons">
                                     <button class="btn btn-sm btn-primary view-btn" data-id="1">View</button>
                                     <button class="btn btn-sm btn-info edit-btn" data-id="1">Edit</button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="1">Delete</button>
+                                    <form action="{{ route('product.destroy', $product->id) }}" 
+                                        method="POST" 
+                                        style="display:inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to delete this product?');">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            Delete
+                                        </button>
+
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
