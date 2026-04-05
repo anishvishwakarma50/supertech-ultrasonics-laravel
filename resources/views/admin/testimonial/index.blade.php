@@ -47,17 +47,10 @@
                                 <td class="action-buttons">
 
                                     <!-- View Button -->
-                                    <button 
-                                        class="btn btn-sm btn-primary view-btn"
-                                        data-name="{{ $testimonial->name }}"
-                                        data-designation="{{ $testimonial->designation }}"
-                                        data-comment="{{ $testimonial->comment }}"
-                                        data-image="{{ asset('storage/'.$testimonial->image_path) }}"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#testimonialModal"
-                                    >
+                                    <a href="{{ route('testimonial.show', $testimonial->id) }}" 
+                                    class="btn btn-sm btn-primary">
                                         View
-                                    </button>
+                                    </a>
 
                                     <!-- Edit -->
                                     <a href="{{ route('testimonial.edit', $testimonial->id) }}" 
@@ -91,93 +84,7 @@
         </div>
         </div>
 
-        <!-- Product Details Modal -->
-        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Product Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4">
-                <div class="col-md-4 text-center">
-                    <img id="modalProductImage" src="" class="img-fluid rounded" alt="Product Image" style="max-height: 200px;">
-                </div>
-                <div class="col-md-8">
-                    <h3 id="modalProductName" class="mb-2"></h3>
-                    <h5 id="modalProductModel" class="text-muted mb-3"></h5>
-                    <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Capacity:</strong> <span id="modalProductCapacity"></span> L</p>
-                        <p><strong>Power:</strong> <span id="modalProductPower"></span> W</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>Price Range:</strong> ₹<span id="modalProductPrice"></span></p>
-                        <p><strong>Industry:</strong> <span id="modalProductIndustry"></span></p>
-                        <p><strong>Status:</strong> <span id="modalProductStatus"></span></p>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                
-                <div class="row">
-                <div class="col-md-12">
-                    <h5 class="mb-3">Description</h5>
-                    <p id="modalProductDescription" class="text-muted"></p>
-                    
-                    <h5 class="mb-3 mt-4">Specifications</h5>
-                    <div id="modalProductSpecs" class="bg-light p-3 rounded">
-                    <!-- Specifications will be loaded here -->
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="editProductBtn">Edit Product</button>
-            </div>
-            </div>
-        </div>
-        </div>
-
     </div>
     <!-- content-wrapper ends -->
-
-    <script>
-        window.document.onload(() => {
-            const deleteButtons = document.querySelectorAll(".delete-btn");
-
-            const handleDelete(event) {
-                
-            }
-        })
-    </script>
-
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const viewButtons = document.querySelectorAll(".view-btn");
-
-            viewButtons.forEach(button => {
-
-                button.addEventListener("click", function () {
-
-                    document.getElementById("modalName").innerText = this.dataset.name;
-
-                    document.getElementById("modalDesignation").innerText = this.dataset.designation;
-
-                    document.getElementById("modalComment").innerText = this.dataset.comment;
-
-                    document.getElementById("modalImage").src = this.dataset.image;
-
-                });
-
-            });
-
-        });
-
-    </script>
   </x-slot:content>
 </x-admin.layout.app>

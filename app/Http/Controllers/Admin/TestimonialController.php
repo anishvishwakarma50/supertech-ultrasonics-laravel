@@ -32,13 +32,13 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'comment' => 'required',
-            'designation' => 'required',
-            'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'name' => 'required|string|max:255',
+            'comment' => 'required|string',
+            'designation' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);
-        // dd($test);
 
+        $path = null;
         if($request->hasFile('image')){
             $path = $request->file('image')->store('testimonials', 'public');
         }
@@ -50,7 +50,7 @@ class TestimonialController extends Controller
             'image_path' => $path
         ]);
 
-        dd('Data inserted Successfully');
+        return redirect()->route('testimonial.index')->with('status', 'Testimonial added successfully!');
     }
 
     /**
@@ -58,7 +58,8 @@ class TestimonialController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        return view('admin.testimonial.show', ['testimonial' => $testimonial]);
     }
 
     /**
@@ -66,7 +67,8 @@ class TestimonialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        return view('admin.testimonial.edit', ['testimonial' => $testimonial]);
     }
 
     /**
@@ -74,7 +76,30 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'comment' => 'required|string',
+            'designation' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'designation' => $request->designation,
+        ];
+
+        // Handle image upload
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('testimonials', 'public');
+            $data['image_path'] = $path;
+        }
+
+        $testimonial->update($data);
+
+        return redirect()->route('testimonial.index')->with('status', 'Testimonial updated successfully!');
     }
 
     /**

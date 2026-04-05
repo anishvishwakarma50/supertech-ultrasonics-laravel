@@ -200,33 +200,43 @@
                             </div> -->
                             <div class="post-comments-form">
                                 <div class="post-comments-title">
-                                    <h2>Post Comments</h2>
+                                    <h2>Inquiry Form</h2>
                                 </div>
-                                <form id="contacts-form" class="conatct-post-form" action="#">
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                <form id="contacts-form" class="conatct-post-form" method="POST" action="{{ route('product.inquiry', $product_data->id) }}">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="contact-icon contacts-message">
-                                                <textarea name="comments" id="comments" cols="30" rows="10"
-                                                    placeholder="Your Comments...."></textarea>
+                                                <input type="text" name="company_name" placeholder="Company Name" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
                                             <div class="contact-icon contacts-name">
-                                                <input type="text" placeholder="Your Name.... ">
+                                                <input type="text" name="contact_person_name" placeholder="Contact Person Name" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
-                                            <div class="contact-icon contacts-email">
-                                                <input type="email" placeholder="Your Email....">
+                                            <div class="contact-icon contacts-phone">
+                                                <input type="text" name="phone_no" placeholder="Phone no." required>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
-                                            <div class="contact-icon contacts-website">
-                                                <input type="text" placeholder="Your Website....">
+                                            <div class="contact-icon contacts-location">
+                                                <input type="text" name="location" placeholder="Location" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
-                                            <button class="b-btn btn-black" type="submit"> <span>send comments</span></button>
+                                            <div class="contact-icon">
+                                                <textarea name="description" placeholder="Additional requirements or description" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <button class="b-btn btn-black" type="submit"> <span>Send Inquiry</span></button>
                                         </div>
                                     </div>
                                 </form>

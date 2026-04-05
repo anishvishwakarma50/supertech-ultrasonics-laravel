@@ -40,32 +40,32 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-3 d-flex align-items-center">
                     <div class="logo">
-                        <a href="index-2.html"><img src="{{ asset('assets/img/logo/Super Tech.svg') }}" alt="" /></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('assets/img/logo/Super Tech.svg') }}" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7">
                     <div class="main-menu text-center">
                         <nav id="mobile-menu">
                             <ul>
-                                <li class="active"><a href="index.php">Home</a>
+                                <li class="active"><a href="{{ route('home') }}">Home</a>
                                 </li>
-                                <li><a href="gallery.php">Gallery</a>
+                                <li><a href="#">Gallery</a>
                                     <ul class="sub-menu text-left">
-                                        <li><a href="services-01.html">services 01</a>
-                                        <li><a href="services-02.html">services 02</a></li>
-                                        <li><a href="services-03.html">services 03</a></li>
-                                        <li><a href="https://devsnews.com/template/kingfact/kingfact/services-details/">services details</a></li>
+                                        <li><a href="#">services 01</a>
+                                        <li><a href="#">services 02</a></li>
+                                        <li><a href="#">services 03</a></li>
+                                        <li><a href="#">services details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="aboutus.php">About</a></li>
-                                <li><a href="products.php">Products</a></li>
-                                <li><a href="accessories.php">Accessories</a></li>
-                                <li><a href="services-01.html">More</a>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">More</a>
                                     <ul class="sub-menu text-left">
-                                        <li><a href="contactus.php">Contact Us</a></li>
-                                        <li><a href="index-3.html">Application</a></li>
-                                        <li><a href="index-4.html">Clients</a></li>
-                                        <li><a href="index-5.html">home 4</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Application</a></li>
+                                        <li><a href="#">Clients</a></li>
+                                        <li><a href="#">home 4</a></li>
                                     </ul>
                                 </li>
 
