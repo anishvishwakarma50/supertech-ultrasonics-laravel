@@ -32,10 +32,29 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="{{ route('lead.index') }}">
+        <i class="icon-person menu-icon"></i>
+        <span class="menu-title">Leads</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{{ route('manage-content') }}">
         <i class="icon-doc menu-icon"></i>
         <span class="menu-title">Manage Site Content</span>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#man-slide" aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-image menu-icon"></i>
+        <span class="menu-title">Sliders</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="man-slide">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{ route('slider.create') }}">Add Slider</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('slider.index') }}">Manage Sliders</a></li>
+        </ul>
+      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#man-inr" aria-expanded="false" aria-controls="ui-basic">
@@ -45,8 +64,8 @@
       </a>
       <div class="collapse" id="man-inr">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="#">Add Industry</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">Manage Industries</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('industry.create') }}">Add Industry</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('industry.index') }}">Manage Industries</a></li>
         </ul>
       </div>
     </li>

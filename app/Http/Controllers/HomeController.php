@@ -159,6 +159,9 @@ class HomeController extends Controller
         // Site Content Data
         $siteData = SiteContent::first();
 
-        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries, 'siteData' => $siteData]);
+        // Fetch Sliders Data
+        $sliders = Slider::orderByDesc('created_at')->limit(5)->get();
+
+        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries, 'siteData' => $siteData, 'sliders' => $sliders]);
     }
 }

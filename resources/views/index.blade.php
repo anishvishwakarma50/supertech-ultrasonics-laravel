@@ -179,7 +179,12 @@
                             <div class="history-wrapper mb-30">
                                 <div class="history-content">
                                     <h4>Company History</h4>
-                                    <p>{{ $siteData->company_history }}</p>
+                                    <p id="historyText" class="truncate-text">{{ Str::limit($siteData->company_history, 300, '') }}</p>
+                                    @if(strlen($siteData->company_history) > 300)
+                                        <button class="btn btn-link p-0 text-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                            ...more <i class="dripicons-arrow-thin-right"></i>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -187,6 +192,21 @@
                 </div>
             </div>
             <!-- history-area-end -->
+
+            <!-- Modal for Full History -->
+            <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="historyModalLabel">Company History</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ $siteData->company_history }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- blog-area-start -->
             <div class="blog-area pt-125 pb-100" style="background-image:url(assets/img/bg/test.jpg)">
@@ -229,18 +249,63 @@
                         </div>
                     </div>
                     <div class="row services-1-active arrow-style">
-                        <div class="col-xl-12">
-                            <div class="latest-services-wrapper pos-rel">
-                                <div class="latest-services-img">
-                                    <img src="assets/img/machines/Single_Chember.png" style="width:51rem;" alt="">
-                                </div>
-                                <div class="latest-services-text">
-                                    <h3>Ultrasonic Cleaning Machine Manufacturers</h3>
-                                    <p>{{ $siteData->what_we_do }}</p>
-                                    <a class="b-btn btn-white" href="#"> <span>view details</span>  </a>
+                        @forelse($sliders as $slider)
+                            <div class="col-xl-12">
+                                <div class="latest-services-wrapper pos-rel mb-40">
+                                    <div class="latest-services-img">
+                                        @if($slider->image)
+                                            <img src="{{ asset('storage/' . $slider->image) }}" style="width:51rem; max-height: 400px; object-fit: cover;" alt="{{ $slider->heading }}">
+                                        @else
+                                            <div style="width:51rem; height: 400px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                                                <span class="text-muted">No image available</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="latest-services-text">
+                                        <h3>{{ $slider->heading }}</h3>
+                                        @if($slider->{'sub-heading'})
+                                            <p id="sliderText-{{ $slider->id }}" class="truncate-text">
+                                                {{ Str::limit($slider->{'sub-heading'}, 300, '') }}
+                                            </p>
+                                            @if(strlen($slider->{'sub-heading'}) > 300)
+                                                <button class="btn btn-link p-0 text-primary" data-bs-toggle="modal" data-bs-target="#sliderModal{{ $slider->id }}">
+                                                    ...more <i class="dripicons-arrow-thin-right"></i>
+                                                </button>
+                                            @endif
+                                        @endif
+                                        <a class="b-btn btn-white" href="#"> <span>view details</span>  </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <!-- Modal for Full Slider Content -->
+                            <div class="modal fade" id="sliderModal{{ $slider->id }}" tabindex="-1" aria-labelledby="sliderModalLabel{{ $slider->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sliderModalLabel{{ $slider->id }}">{{ $slider->heading }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if($slider->image)
+                                                <img src="{{ asset('storage/' . $slider->image) }}" style="width: 100%; max-height: 500px; object-fit: cover; margin-bottom: 20px;" alt="{{ $slider->heading }}">
+                                            @endif
+                                            <p>{{ $slider->{'sub-heading'} }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-xl-12">
+                                <div class="latest-services-wrapper pos-rel">
+                                    <div class="latest-services-text">
+                                        <h3>Ultrasonic Cleaning Machine Manufacturers</h3>
+                                        <p>{{ $siteData->what_we_do }}</p>
+                                        <a class="b-btn btn-white" href="#"> <span>view details</span>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
