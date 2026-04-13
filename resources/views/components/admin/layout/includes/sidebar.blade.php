@@ -44,6 +44,20 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#man-pages" aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-layers menu-icon"></i>
+        <span class="menu-title">Pages</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="man-pages">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}" target="_blank">View About Page</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}" target="_blank">View Contact Page</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('products') }}" target="_blank">View Products Page</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#man-slide" aria-expanded="false" aria-controls="ui-basic">
         <i class="icon-image menu-icon"></i>
         <span class="menu-title">Sliders</span>

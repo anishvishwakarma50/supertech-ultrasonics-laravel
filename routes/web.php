@@ -12,10 +12,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController as ProController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductsPageController;
 use Illuminate\Support\Facades\Route;
 
+// Public Routes
 Route::get('/', [HomeController::class,'index'])->name('home');
-
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
+Route::get('/products', [ProductsPageController::class, 'index'])->name('products');
 Route::get('/product/{id}/{title}', [ProController::class, 'showProduct'])->name('product-details');
 Route::post('/product/{id}/inquiry', [InquiryController::class, 'store'])->name('product.inquiry');
 

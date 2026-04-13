@@ -4,31 +4,27 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-9 col-md-9 d-flex align-items-center">
                     <div class="header-info">
-                        <span class="mail-header-icon"><i class="far fa-clock"></i> Mon - Fri: 9:00 - 19:00 / Closed on Weekends</span>
-                        <span class="mail-header-icon"><i class="far fa-phone"></i> Flat 20, Reynolds USA</span>
+                        <span class="mail-header-icon"><i class="far fa-clock"></i> Mon - Sat: 9:00 - 19:00 / Closed on Sunday</span>
+                        @if($siteData && $siteData->contact_details)
+                            <span class="mail-header-icon"><i class="far fa-phone"></i> {{ $siteData->contact_details }}</span>
+                        @else
+                            <span class="mail-header-icon"><i class="far fa-phone"></i> Contact us for more info</span>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3">
                     <div class="header-top-right f-right ">
                         <div class="header-icon f-right d-none d-xl-block">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-google"></i></a>
-                            <a href="#"><i class="fab fa-dribbble"></i></a>
-                            <a href="#"><i class="fab fa-behance"></i></a>
-                        </div>
-                        <div class="header-lang  pos-rel f-right">
-                            <div class="lang-icon">
-                                <img src="{{ asset('assets/img/icon/flag.png') }}" alt="">
-                                <a href="#">English <i class="far fa-angle-down"></i></a>
-                            </div>
-                            <ul class="header-lang-list">
-                                <li><a href="#">USA</a></li>
-                                <li><a href="#">UK</a></li>
-                                <li><a href="#">CA</a></li>
-                                <li><a href="#">AU</a></li>
-                            </ul>
+                            @if($siteData && $siteData->linkedin_url)
+                                <a href="{{ $siteData->linkedin_url }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
+                            @if($siteData && $siteData->instagram_url)
+                                <a href="{{ $siteData->instagram_url }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                            @endif
+                            @if($siteData && $siteData->youtube_url)
+                                <a href="{{ $siteData->youtube_url }}" target="_blank"><i class="fab fa-youtube"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -47,28 +43,10 @@
                     <div class="main-menu text-center">
                         <nav id="mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ route('home') }}">Home</a>
-                                </li>
-                                <li><a href="#">Gallery</a>
-                                    <ul class="sub-menu text-left">
-                                        <li><a href="#">services 01</a>
-                                        <li><a href="#">services 02</a></li>
-                                        <li><a href="#">services 03</a></li>
-                                        <li><a href="#">services details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Products</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">More</a>
-                                    <ul class="sub-menu text-left">
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Application</a></li>
-                                        <li><a href="#">Clients</a></li>
-                                        <li><a href="#">home 4</a></li>
-                                    </ul>
-                                </li>
-
+                                <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                                <li><a href="{{ route('products') }}">Products</a></li>
+                                <li><a href="{{ route('about') }}">About</a></li>
+                                <li><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -108,37 +86,29 @@
         <div class="side-info mb-30">
             <div class="contact-list mb-30">
                 <h4>Office Address</h4>
-                <p>123/A, Miranda City Likaoli
-                    Prikano, Dope</p>
+                @if($siteData && $siteData->address)
+                    <p>{{ $siteData->address }}</p>
+                @else
+                    <p>Address not available</p>
+                @endif
             </div>
             <div class="contact-list mb-30">
                 <h4>Phone Number</h4>
-                <p>+0989 7876 9865 9</p>
-                <p>+(090) 8765 86543 85</p>
+                @if($siteData && $siteData->contact_details)
+                    <p>{{ $siteData->contact_details }}</p>
+                @endif
+                @if($siteData && $siteData->contact_number_2)
+                    <p>{{ $siteData->contact_number_2 }}</p>
+                @endif
             </div>
             <div class="contact-list mb-30">
                 <h4>Email Address</h4>
+                @if($siteData && $siteData->email)
+                    <p><a href="mailto:{{ $siteData->email }}">{{ $siteData->email }}</a></p>
+                @else
+                    <p>Email not available</p>
+                @endif
             </div>
-        </div>
-        <div class="instagram">
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p1.jpg')}}" alt="">
-            </a>
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p2.jpg')}}" alt="">
-            </a>
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p3.jpg')}}" alt="">
-            </a>
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p4.jpg')}}" alt="">
-            </a>
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p5.jpg')}}" alt="">
-            </a>
-            <a href="#">
-                <img src="{{asset('assets/img/portfolio/p6.jpg')}}" alt="">
-            </a>
         </div>
         <div class="social-icon-right mt-20">
             <a href="#">
