@@ -40,7 +40,11 @@
                         @foreach ($products as $product)
                             <tr>
                                 <td>
-                                    <img src="images/product1.jpg" class="product-img" alt="{{ $product->title }}">
+                                    @if($product->primaryImage)
+                                        <img src="{{ asset('storage/' . $product->primaryImage->image_path) }}" class="product-img" alt="{{ $product->title }}" style="max-height: 50px;">
+                                    @else
+                                        <img src="{{ asset('images/placeholder.jpg') }}" class="product-img" alt="No image" style="max-height: 50px;">
+                                    @endif
                                 </td>
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->moq }}</td>
@@ -52,8 +56,8 @@
                                     <span class="badge badge-success status-badge">Active</span>
                                 </td>
                                 <td class="action-buttons">
-                                    <button class="btn btn-sm btn-primary view-btn" data-id="1">View</button>
-                                    <button class="btn btn-sm btn-info edit-btn" data-id="1">Edit</button>
+                                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-primary">View</a>
+                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-info">Edit</a>
                                     <form action="{{ route('product.destroy', $product->id) }}" 
                                         method="POST" 
                                         style="display:inline-block;"

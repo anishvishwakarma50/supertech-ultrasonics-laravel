@@ -12,7 +12,7 @@
                 <!-- Status message container -->
                 <div id="statusMessage" class="alert d-none"></div>
 
-                <form id="productForm" method="POST" action="{{ route('product.store') }}">
+                <form id="productForm" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <!-- Product Name -->
@@ -86,12 +86,12 @@
                         </div>
                     </div>
 
-                    <!-- Product Image -->
-                    {{-- <div class="mb-3">
-                    <label for="image_url" class="form-label">Product Image</label>
-                    <input type="file" class="form-control" id="image_url" name="image_url" accept="image/*">
-                    </div> --}}
-
+                    <!-- Product Images -->
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Product Images</label>
+                        <input type="file" class="form-control" id="images" name="images[]" accept="image/*" multiple>
+                        <small class="form-text text-muted">You can select multiple images. Supported formats: JPG, PNG, GIF, WEBP</small>
+                    </div>
 
                     <!-- Submit -->
                     <button type="submit" class="btn btn-primary">Save Product</button>

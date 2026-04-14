@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LoginController;
@@ -75,4 +76,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Inquiry Resource Route
     Route::resource('inquiry', \App\Http\Controllers\Admin\InquiryController::class)->only(['index', 'show']);
+
+    // Contact Resource Route
+    Route::resource('contact', AdminContactController::class)->only(['index', 'show', 'destroy']);
+    Route::post('/contact/{contact}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('contact.mark-as-read');
+    Route::post('/contact/{contact}/mark-as-unread', [AdminContactController::class, 'markAsUnread'])->name('contact.mark-as-unread');
+    Route::post('/contact/delete-all', [AdminContactController::class, 'deleteAll'])->name('contact.delete-all');
 });

@@ -32,6 +32,12 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="{{ route('contact.index') }}">
+        <i class="icon-mail menu-icon"></i>
+        <span class="menu-title">Contact Messages</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{{ route('lead.index') }}">
         <i class="icon-person menu-icon"></i>
         <span class="menu-title">Leads</span>

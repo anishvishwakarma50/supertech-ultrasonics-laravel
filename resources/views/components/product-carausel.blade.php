@@ -6,7 +6,7 @@
         <div class="carousel-inner shadow-sm rounded">
             @foreach ($images as $image)
                 <div class="carousel-item {{ ($image->position == 1) ? 'active' : '' }}">
-                    <img src="{{ $image->image_path }}" class="d-block w-100" alt="portfolio Front">
+                    <img src="{{ Storage::url($image->image_path) }}" class="d-block w-100" alt="portfolio Front">
                 </div>
             @endforeach
         </div>
@@ -24,7 +24,7 @@
     <div class="row gx-2 mt-3 justify-content-center thumb-row">
         @foreach ($images as $image)
             <div class="col-2">
-                <img src="{{ $image->image_path }}" class="img-thumbnail {{ ($image->position == 1) ? 'active-thumb' : '' }} shadow-sm" data-target="#productCarousel" data-slide-to="0">
+                <img src="{{ Storage::url($image->image_path) }}" class="img-thumbnail {{ ($image->position == 1) ? 'active-thumb' : '' }} shadow-sm" data-target="#productCarousel" data-slide-to="0">
             </div>
         @endforeach
     </div>
