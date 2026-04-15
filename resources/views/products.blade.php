@@ -1,4 +1,4 @@
-<x-layout.app title="Products - Super Tech Ultrasonic">
+<x-layout.app title="Products - Super Tech Ultrasonic" :seo="$seo">
     <x-slot:content>
         <main>
             <!-- Page Title Start -->
@@ -19,15 +19,6 @@
             <!-- Products Grid Start -->
             <div class="products-area pt-125 pb-100">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
-                            <div class="section-title text-center mb-75">
-                                <span>Premium Quality</span>
-                                <h1>Ultrasonic Cleaners</h1>
-                            </div>
-                        </div>
-                    </div>
-
                     @if($products->count() > 0)
                         <div class="row">
                             @foreach($products as $product)

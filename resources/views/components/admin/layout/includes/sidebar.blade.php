@@ -50,6 +50,12 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="{{ route('manage-seo') }}">
+        <i class="icon-search menu-icon"></i>
+        <span class="menu-title">Manage SEO</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#man-pages" aria-expanded="false" aria-controls="ui-basic">
         <i class="icon-layers menu-icon"></i>
         <span class="menu-title">Pages</span>

@@ -1,150 +1,238 @@
-{{-- this is the Edit Product page --}}
 <x-admin.layout.app title="Edit Product">
-  {{-- main content --}}
-  <x-slot:content>
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Edit Product</h4>
-                        <p class="card-description">Update ultrasonic machine details</p>
+    <x-slot:content>
 
-                        @if(session('status'))
-                            <div class="alert alert-success">{{ session('status') }}</div>
-                        @endif
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/decoupled-document/ckeditor.js"></script>
 
-                        <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" class="forms-sample">
-                            @csrf
-                            @method('PUT')
-                            
-                            <div class="form-group">
-                                <label for="title">Machine Name *</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" 
-                                    value="{{ old('title', $product->title) }}" required>
-                                @error('title')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="moq">MOQ *</label>
-                                <input type="text" class="form-control @error('moq') is-invalid @enderror" id="moq" name="moq" 
-                                    value="{{ old('moq', $product->moq) }}" required>
-                                @error('moq')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="description">Description *</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3" required>{{ old('description', $product->description) }}</textarea>
-                                @error('description')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                            </div>
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12 grid-margin stretch-card">
 
-                            <h5 class="mt-4">Specification</h5>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="usage">Usage</label>
-                                        <input type="text" class="form-control @error('usage') is-invalid @enderror" id="usage" name="usage" 
-                                            value="{{ old('usage', $product->specification->usage) }}">
-                                        @error('usage')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="material">Material</label>
-                                        <input type="text" class="form-control @error('material') is-invalid @enderror" id="material" name="material" 
-                                            value="{{ old('material', $product->specification->material) }}">
-                                        @error('material')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="weight">Weight</label>
-                                        <input type="number" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" 
-                                            value="{{ old('weight', $product->specification->weight) }}">
-                                        @error('weight')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="voltage">Voltage (Watts)</label>
-                                        <input type="text" class="form-control @error('voltage') is-invalid @enderror" id="voltage" name="voltage" 
-                                            value="{{ old('voltage', $product->specification->voltage) }}">
-                                        @error('voltage')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="color">Color</label>
-                                        <input type="text" class="form-control @error('color') is-invalid @enderror" id="color" name="color" 
-                                            value="{{ old('color', $product->specification->color) }}">
-                                        @error('color')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="frequency">Frequency</label>
-                                        <input type="text" class="form-control @error('frequency') is-invalid @enderror" id="frequency" name="frequency" 
-                                            value="{{ old('frequency', $product->specification->frequency) }}">
-                                        @error('frequency')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
 
-                            <div class="form-group">
-                                <label for="temperature">Temperature</label>
-                                <input type="number" step="0.01" class="form-control @error('temperature') is-invalid @enderror" id="temperature" name="temperature" 
-                                    value="{{ old('temperature', $product->specification->temperature) }}">
-                                @error('temperature')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Product Images</label>
-                                
-                                @if($product->images->count() > 0)
-                                    <div class="mb-3">
-                                        <p class="text-muted">Current Images:</p>
-                                        <div class="row">
-                                            @foreach($product->images as $image)
-                                                <div class="col-md-3 mb-3">
-                                                    <div class="card">
-                                                        <img src="{{ asset('storage/' . $image->image_path) }}" class="card-img-top" alt="Product image" style="height: 150px; object-fit: cover;">
-                                                        <div class="card-body">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="delete_image_{{ $image->id }}" name="delete_images[]" value="{{ $image->id }}">
-                                                                <label class="form-check-label" for="delete_image_{{ $image->id }}">Delete</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                            <h4 class="mb-4">Edit Product</h4>
+
+                            <form method="POST" action="{{ route('product.update', $product->id) }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+
+                                {{-- BASIC DETAILS --}}
+                                <h5 class="mb-3">Basic Details</h5>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Machine Name *</label>
+                                    <input type="text" class="form-control" name="title"
+                                        value="{{ old('title', $product->title) }}" required>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Minimum Order Quantity (MOQ) *</label>
+                                    <input type="text" class="form-control" name="moq"
+                                        value="{{ old('moq', $product->moq) }}" required>
+                                </div>
+
+                                {{-- DESCRIPTION --}}
+                                <div class="mb-4">
+                                    <label class="form-label">Product Description *</label>
+                                    <div id="description_toolbar"></div>
+                                    <div id="description_editor" class="form-control"
+                                        style="height:300px;overflow:auto;">
+                                        {!! old('description', $product->description) !!}
+                                    </div>
+                                    <textarea id="description" name="description" hidden></textarea>
+                                </div>
+
+                                {{-- SPECIFICATION --}}
+                                <h5 class="mb-3">Specifications</h5>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Usage</label>
+                                        <input type="text" class="form-control" name="usage"
+                                            value="{{ old('usage', $product->specification->usage ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Material</label>
+                                        <input type="text" class="form-control" name="material"
+                                            value="{{ old('material', $product->specification->material ?? '') }}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Weight (kg)</label>
+                                        <input type="number" class="form-control" name="weight"
+                                            value="{{ old('weight', $product->specification->weight ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Voltage (Watts)</label>
+                                        <input type="text" class="form-control" name="voltage"
+                                            value="{{ old('voltage', $product->specification->voltage ?? '') }}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Color</label>
+                                        <input type="text" class="form-control" name="color"
+                                            value="{{ old('color', $product->specification->color ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Frequency</label>
+                                        <input type="text" class="form-control" name="frequency"
+                                            value="{{ old('frequency', $product->specification->frequency ?? '') }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Temperature (°C)</label>
+                                    <input type="number" step="0.01" class="form-control" name="temperature"
+                                        value="{{ old('temperature', $product->specification->temperature ?? '') }}">
+                                </div>
+
+                                {{-- SEO --}}
+                                <h5 class="mb-3">SEO Settings</h5>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Meta Title</label>
+                                    <input type="text" class="form-control" name="meta_title"
+                                        value="{{ old('meta_title', $product->seo->meta_title ?? '') }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Meta Description</label>
+                                    <textarea class="form-control"
+                                        name="meta_description">{{ old('meta_description', $product->seo->meta_description ?? '') }}</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Open Graph Title</label>
+                                    <input type="text" class="form-control" name="og_title"
+                                        value="{{ old('og_title', $product->seo->og_title ?? '') }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Open Graph Description</label>
+                                    <textarea class="form-control"
+                                        name="og_description">{{ old('og_description', $product->seo->og_description ?? '') }}</textarea>
+                                </div>
+
+                                @if($product->seo && $product->seo->og_image)
+                                <div class="mb-3">
+                                    <label class="form-label">Current OG Image</label>
+
+                                    <div class="card" style="width:200px;">
+                                        <img src="{{ asset('storage/' . $product->seo->og_image) }}" 
+                                            class="card-img-top" 
+                                            style="height:150px;object-fit:cover;">
+
+                                        <div class="card-body text-center p-2">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="delete_og_image" value="1" class="form-check-input" id="deleteOg">
+                                                <label for="deleteOg" class="form-check-label">Delete</label>
+                                            </div>
                                         </div>
                                     </div>
-                                @endif
-                                
-                                <div class="form-group mt-3">
-                                    <label for="images">Add New Images</label>
-                                    <input type="file" class="form-control @error('images') is-invalid @enderror" id="images" name="images[]" accept="image/*" multiple>
-                                    <small class="form-text text-muted">You can select multiple images. Supported formats: JPG, PNG, GIF, WEBP (max 5MB each)</small>
-                                    @error('images')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary mr-2">Update Product</button>
-                            <a href="{{ route('product.index') }}" class="btn btn-light">Cancel</a>
-                        </form>
+                                <small class="text-danger">Tick checkbox to delete image</small><br>
+                                @endif
 
+                                <label class="form-label">Upload New OG Image</label>
+                                <input type="file" class="form-control mb-3" name="og_image">
+
+                                {{-- IMAGES --}}
+                                <h5 class="mb-3">Product Images</h5>
+
+                                {{-- CURRENT PRODUCT IMAGES --}}
+                                @if($product->images->count() > 0)
+                                <h6 class="mt-3">Current Images</h6>
+
+                                <div class="row mb-3">
+                                    @foreach($product->images as $image)
+                                        <div class="col-md-3 mb-3">
+                                            <div class="card shadow-sm">
+                                                <img src="{{ asset('storage/' . $image->image_path) }}" 
+                                                    class="card-img-top" 
+                                                    style="height:150px;object-fit:cover;">
+
+                                                <div class="card-body p-2 text-center">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" 
+                                                            class="form-check-input" 
+                                                            name="delete_images[]" 
+                                                            value="{{ $image->id }}"
+                                                            id="img{{ $image->id }}">
+                                                        <label class="form-check-label" for="img{{ $image->id }}">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <small class="text-danger">Tick checkbox to delete image</small>
+                                @endif
+
+                                {{-- UPLOAD NEW IMAGES --}}
+                                <div class="mb-4">
+                                    <label class="form-label">Upload New Images</label>
+                                    <input type="file" class="form-control" name="images[]" multiple>
+                                    <small class="text-muted">You can upload multiple images</small>
+                                </div>
+
+                                <button class="btn btn-primary">Update Product</button>
+
+                            </form>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-  </x-slot:content>
+        <script>
+            let editor;
+
+            function initEditor(editorId, toolbarId) {
+                return DecoupledEditor.create(document.querySelector(editorId), {
+                    toolbar: [
+                        'heading', '|',
+                        'bold', 'italic', 'underline',
+                        '|',
+                        'bulletedList', 'numberedList', 'blockquote',
+                        '|',
+                        'link',
+                        '|',
+                        'undo', 'redo'
+                    ],
+                    heading: {
+                        options: [
+                            { model: 'paragraph', title: 'Paragraph' },
+                            { model: 'heading2', view: 'h2', title: 'Heading 2' },
+                            { model: 'heading3', view: 'h3', title: 'Heading 3' }
+                        ]
+                    },
+                    placeholder: 'Update product description...'
+                }).then(ed => {
+                    document.querySelector(toolbarId).appendChild(ed.ui.view.toolbar.element);
+                    return ed;
+                });
+            }
+
+            (async () => {
+                editor = await initEditor('#description_editor', '#description_toolbar');
+            })();
+
+            document.querySelector('form').addEventListener('submit', function () {
+                document.getElementById('description').value = editor.getData();
+            });
+        </script>
+
+    </x-slot:content>
 </x-admin.layout.app>

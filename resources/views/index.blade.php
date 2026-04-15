@@ -1,4 +1,4 @@
-<x-layout.app title="Super Tech Ultrasonic">
+<x-layout.app title="Super Tech Ultrasonic" :seo="$seo">
     <x-slot:content>
         <main>
             <!-- slider start -->
@@ -79,7 +79,6 @@
                                     style="z-index: 5; white-space: normal; font-size: 20px; line-height: 22px; font-weight: 400; color: #444; letter-spacing: 0px;font-family:'Roboto', sans-serif;">
                                     <div class="bd-slider-button">
                                         <a class="b-btn" href="#"> <span>get started</span></a>
-                                        <a class="btn-text-b ml-20" href="#"> our services</a>
                                     </div>
                                 </div>
                             </li>
@@ -183,7 +182,7 @@
                                 <div class="history-content">
                                     <h4>Company History</h4>
                                     @if($siteData && $siteData->company_history)
-                                        <p id="historyText" class="truncate-text">{{ Str::limit($siteData->company_history, 300, '') }}</p>
+                                        <div id="historyText" class="truncate-text">{!! Str::limit($siteData->company_history, 300, '') !!}</div>
                                         @if(strlen($siteData->company_history) > 300)
                                             <button class="btn btn-link p-0 text-primary" data-toggle="modal" data-target="#historyModal">
                                                 ...more <i class="dripicons-arrow-thin-right"></i>
@@ -210,7 +209,7 @@
                         </div>
                         <div class="modal-body">
                             @if($siteData && $siteData->company_history)
-                                <p>{{ $siteData->company_history }}</p>
+                                <div>{!! $siteData->company_history !!}</div>
                             @else
                                 <p class="text-muted">Company history not available</p>
                             @endif
@@ -235,6 +234,9 @@
                         @foreach ($products as $product)
                             <x-product-card :$product />
                         @endforeach
+                        
+                    </div>
+                    <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-4">
                             <div class="blog-wrapper mb-30 d-flex flex-end">
                                 <a href="blog-details.html" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">
@@ -268,7 +270,7 @@
                                 <div class="latest-services-text">
                                     <h3>Ultrasonic Cleaning Machine Manufacturers</h3>
                                     @if($siteData && $siteData->what_we_do)
-                                        <p class="truncate-text">{{ Str::limit($siteData->what_we_do, 300, '') }}</p>
+                                        <div class="truncate-text">{!! Str::limit($siteData->what_we_do, 300, '') !!}</div>
                                         @if(strlen($siteData->what_we_do) > 300)
                                             <button class="btn btn-link p-0 text-primary" data-toggle="modal" data-target="#servicesModal">
                                                 ...more <i class="dripicons-arrow-thin-right"></i>
@@ -296,7 +298,7 @@
                         </div>
                         <div class="modal-body">
                             @if($siteData && $siteData->what_we_do)
-                                <p>{{ $siteData->what_we_do }}</p>
+                                <div>{!! $siteData->what_we_do !!}</div>
                             @else
                                 <p class="text-muted">Services description not available</p>
                             @endif
@@ -336,75 +338,6 @@
             <!-- testimonial-6-area -->
             <x-testimonial :$testimonials/>
             <!-- testimonial-6-area end -->
-
-            <!-- brand-area-start -->
-            <div class="brand-area pb-130">
-                <div class="container">
-                    <div class="row brand-active">
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                <img src="assets/img/brand/01.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                <img src="assets/img/brand/02.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/03.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/04.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/05.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12 text-center">
-                            <div class="brand-img">
-                                    <img src="assets/img/brand/02.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                <img src="assets/img/brand/01.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                <img src="assets/img/brand/02.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/03.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/04.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="brand-img text-center">
-                                    <img src="assets/img/brand/05.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12 text-center">
-                            <div class="brand-img">
-                                    <img src="assets/img/brand/02.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- brand-area-end -->
 
         </main>
     </x-slot:content>

@@ -218,7 +218,7 @@ label {
   background: #05103b; }
 
 .black-2-bg {
-  background: #262626; }
+  background: #525050; }
 
 .blue-soft-bg {
   background: #11202d; }
@@ -1405,6 +1405,14 @@ label {
 
 #scrollUp:hover {
   background: #333; }
+
+/*
+Logo
+*/
+.logo-side {
+  background: #737878;
+  border-radius: 0rem 1rem 1rem 0;
+}
 
 /*
   	Flaticon icon font: Flaticon

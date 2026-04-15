@@ -1,5 +1,5 @@
 {{-- {{ dd($product_data) }} --}}
-<x-layout.app title="{{ $product_data->title }}">
+<x-layout.app title="{{ $product_data->title }}" :seo="$product_data->seo">
     <x-slot:content>
         <style>
             #productCarousel .carousel-item img {
@@ -25,24 +25,9 @@
                 padding: 20px;
             }
         </style>
-        <script>
-            $(document).ready(function() {
-                // Handle thumbnail active state
-                $('.thumb-row img').on('click', function() {
-                    $('.thumb-row img').removeClass('active-thumb');
-                    $(this).addClass('active-thumb');
-                });
-
-                // Update thumbnail active state when carousel slides via arrows
-                $('#productCarousel').on('slide.bs.carousel', function (e) {
-                    var id = e.to;
-                    $('.thumb-row img').removeClass('active-thumb');
-                    $('.thumb-row img[data-slide-to="' + id + '"]').addClass('active-thumb');
-                });
-            });
-        </script>
+        
         <!-- breadcrumb-area-start -->
-        <div class="container">
+        {{-- <div class="container">
             <div class="breadcrumb-text text-center">
                 <h1>blog details</h1>
                 <ul class="breadcrumb-menu">
@@ -50,7 +35,7 @@
                     <li><span>blog details</span></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
         <!-- breadcrumb-area-end -->
         <!-- blog-area start -->
         <div class="blog-area pt-40 pb-80">
@@ -62,15 +47,15 @@
 
                             <h3 class="product-title mb-10">{{ $product_data->title }}</h3>
                             <div class="postbox__text bg-none">
-                                <div class="post-meta mb-15">
+                                {{-- <div class="post-meta mb-15">
                                     <span><i class="far fa-calendar-check"></i> September 15, 2018 </span>
                                     <span><a href="#"><i class="far fa-user"></i> Diboli B. Joly</a></span>
                                     <span><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span>
-                                </div>
+                                </div> --}}
                                 <div class="post-text mb-20">
-                                    <p>{{ $product_data->description }}</p>
+                                    <div>{!! $product_data->description !!}</div>
                                 </div>
-                                <div class="row mt-50">
+                                {{-- <div class="row mt-50">
                                     <div class="col-xl-8 col-lg-8 col-md-8 mb-15">
                                         <div class="blog-post-tag">
                                             <span>Releted Tags</span>
@@ -89,7 +74,7 @@
                                             <a href="#"><i class="fab fa-vimeo-v"></i></a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- <div class="row">
                                     <div class="col-12">
                                         <div class="navigation-border pt-50 mt-40"></div>
@@ -289,7 +274,7 @@
                         </div> -->
                         {{-- Specification --}}
                         <x-product-specification :specification="$product_data->specification" />
-                        <div class="widget mb-40">
+                        {{-- <div class="widget mb-40">
                             <div class="widget-title-box mb-30">
                                 <h3 class="widget-title">Social Profile</h3>
                             </div>
@@ -300,8 +285,8 @@
                                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="#"><i class="fab fa-youtube"></i></a>
                             </div>
-                        </div>
-                        <div class="widget mb-40">
+                        </div> --}}
+                        {{-- <div class="widget mb-40">
                             <div class="widget-title-box mb-30">
                                 <h3 class="widget-title">Instagram Feeds</h3>
                             </div>
@@ -319,7 +304,7 @@
                                 <a href="#">keyboard</a>
                                 <a href="#">tech</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="widget mb-40 p-0 b-0">
                             <div class="banner-widget">
                                 <a href="#"><img src="{{ asset('assets/img/blog/banner.html') }}" alt=""></a>
@@ -330,5 +315,38 @@
             </div>
         </div>
         <!-- blog-area end -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Bootstrap carousel
+                const carouselElement = document.getElementById('productCarousel');
+                const carousel = new bootstrap.Carousel(carouselElement, {
+                    interval: false
+                });
+
+                // Handle thumbnail click to slide carousel
+                const thumbnails = document.querySelectorAll('.thumb-row img');
+                thumbnails.forEach(function(thumbnail) {
+                    thumbnail.addEventListener('click', function() {
+                        const slideIndex = parseInt(this.getAttribute('data-slide-to'));
+                        carousel.to(slideIndex);
+                    });
+                });
+
+                // Update thumbnail active state when carousel slides
+                carouselElement.addEventListener('slid.bs.carousel', function(e) {
+                    const nextIndex = e.to;
+                    // Remove active-thumb class from all thumbnails
+                    thumbnails.forEach(function(thumb) {
+                        thumb.classList.remove('active-thumb');
+                    });
+                    // Add active-thumb class to the current thumbnail
+                    const activeThumb = document.querySelector('.thumb-row img[data-slide-to="' + nextIndex + '"]');
+                    if (activeThumb) {
+                        activeThumb.classList.add('active-thumb');
+                    }
+                });
+            });
+        </script>
     </x-slot:content>
 </x-layout.app>

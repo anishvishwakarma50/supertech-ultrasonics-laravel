@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Eager load specification and images to avoid N+1 queries
-        $products = Product::with(['specification', 'images'])->orderByDesc('created_at')->get();
+        // Eager load specification, images, and seo to avoid N+1 queries
+        $products = Product::with(['specification', 'images', 'seo'])->orderByDesc('created_at')->get();
         // dd($products);
         return view("admin.product.index", ['products' => $products]);
     }
@@ -48,6 +48,11 @@ class ProductController extends Controller
             'temperature' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120', // max 5MB
+            'meta_title' => 'nullable|string|max:60',
+            'meta_description' => 'nullable|string|max:160',
+            'og_title' => 'nullable|string|max:100',
+            'og_description' => 'nullable|string|max:160',
+            'og_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
         $curr_spec = Specification::create($request->only([
@@ -62,7 +67,7 @@ class ProductController extends Controller
 
         $product = Product::create([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => $this->sanitizeHtml($request->description),
             'moq' => $request->moq,
             'specification_id' => $curr_spec->id
         ]);
@@ -84,6 +89,22 @@ class ProductController extends Controller
             }
         }
 
+        // Handle SEO data
+        $seoData = [
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'og_title' => $request->og_title,
+            'og_description' => $request->og_description,
+        ];
+
+        // Handle OG image upload
+        if ($request->hasFile('og_image')) {
+            $ogImagePath = $request->file('og_image')->store('ogimages', 'public');
+            $seoData['og_image'] = $ogImagePath;
+        }
+
+        $product->seo()->create($seoData);
+
         return redirect()->route('product.index')->with('status', 'Product added Successfully');
     }
 
@@ -92,7 +113,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::with(['specification', 'images'])->findOrFail($id);
+        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
         return view("admin.product.show", ['product' => $product]);
     }
 
@@ -101,7 +122,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::with(['specification', 'images'])->findOrFail($id);
+        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
         return view("admin.product.edit", ['product' => $product]);
     }
 
@@ -110,7 +131,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $product = Product::with(['specification', 'images'])->findOrFail($id);
+        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
 
         // Validate input
         $request->validate([
@@ -126,12 +147,18 @@ class ProductController extends Controller
             'temperature' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120', // max 5MB
+            'meta_title' => 'nullable|string|max:60',
+            'meta_description' => 'nullable|string|max:160',
+            'og_title' => 'nullable|string|max:100',
+            'og_description' => 'nullable|string|max:160',
+            'og_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'delete_og_image' => 'nullable|boolean',
         ]);
 
         // Update product
         $product->update([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => $this->sanitizeHtml($request->description),
             'moq' => $request->moq,
         ]);
 
@@ -176,6 +203,37 @@ class ProductController extends Controller
             }
         }
 
+        // Handle SEO data
+        $seoData = [
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'og_title' => $request->og_title,
+            'og_description' => $request->og_description,
+        ];
+
+        // Handle OG image deletion
+        if ($request->delete_og_image && $product->seo && $product->seo->og_image) {
+            Storage::disk('public')->delete($product->seo->og_image);
+            $seoData['og_image'] = null;
+        }
+
+        // Handle OG image upload
+        if ($request->hasFile('og_image')) {
+            // Delete old OG image if exists
+            if ($product->seo && $product->seo->og_image) {
+                Storage::disk('public')->delete($product->seo->og_image);
+            }
+            $ogImagePath = $request->file('og_image')->store('ogimages', 'public');
+            $seoData['og_image'] = $ogImagePath;
+        }
+
+        // Update or create SEO data
+        if ($product->seo) {
+            $product->seo->update($seoData);
+        } else {
+            $product->seo()->create($seoData);
+        }
+
         return redirect()->route('product.index')->with('status', 'Product updated successfully');
     }
 
@@ -191,5 +249,26 @@ class ProductController extends Controller
         return redirect()
         ->route('product.index')
         ->with('status', 'Product Deleted Successfully');
+    }
+
+    /**
+     * Sanitize HTML content from CKEditor
+     * Allows safe tags like p, br, b, i, u, h1-h6, ul, ol, li, img, a, strong, em
+     */
+    private function sanitizeHtml($html)
+    {
+        if (!$html) return null;
+
+        $allowed_tags = [
+            'p', 'br', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'ul', 'ol', 'li', 'img', 'a', 'strong', 'em', 'span',
+            'blockquote', 'figure', 'figcaption'
+        ];
+
+        // Create allowed tags string
+        $allowed = '<' . implode('><', $allowed_tags) . '>';
+
+        // Strip tags not in allowed list
+        return strip_tags($html, $allowed);
     }
 }

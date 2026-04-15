@@ -43,10 +43,10 @@
                     <div class="main-menu text-center">
                         <nav id="mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('products') }}">Products</a></li>
-                                <li><a href="{{ route('about') }}">About</a></li>
-                                <li><a href="{{ route('contact') }}">Contact</a></li>
+                                <li class="{{ request()->routeIs('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="{{ request()->routeIs('products') ? 'active' : '' }}"><a href="{{ route('products') }}">Products</a></li>
+                                <li class="{{ request()->routeIs('about') ? 'active' : '' }}"><a href="{{ route('about') }}">About</a></li>
+                                <li class="{{ request()->routeIs('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -58,7 +58,7 @@
                                 <img src="{{ asset('assets/img/icon/phone.png') }}" alt="">
                             </div>
                             <div class="header-right-text">
-                                <a class="btn" href="#"> <span>Get a Quote</span></a>
+                                <a class="btn" href="{{ route('contact') }}"> <span>Get a Quote</span></a>
                             </div>
                         </div>
                         <div class="menu-bar f-right">
@@ -79,8 +79,8 @@
             </button>
         </div>
         <div class="logo-side mb-30">
-            <a href="index-2.html">
-                <img src="{{ asset('assets/img/logo/white.png') }}" alt="" />
+            <a href="{{ route('home') }}">
+                <img src="{{ Storage::url($siteData->logo) }}" alt="" />
             </a>
         </div>
         <div class="side-info mb-30">

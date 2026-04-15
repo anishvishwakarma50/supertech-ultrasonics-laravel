@@ -42,7 +42,7 @@
                         <h3 class="footer-title">About Company</h3>
                         <div class="footer-text">
                             @if($siteData && $siteData->about_company)
-                                <p>{{ Str::limit($siteData->about_company, 150) }}</p>
+                                <p>{!! Str::limit($siteData->about_company, 150) !!}</p>
                             @else
                                 <p>No information available at this time.</p>
                             @endif

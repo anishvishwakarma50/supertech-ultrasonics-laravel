@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\admin\ManageSiteController;
+use App\Http\Controllers\Admin\PageSeoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\LeadController;
@@ -64,6 +65,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/manage-content', [ManageSiteController::class, 'index'])->name('manage-content');
     // Store Site Content
     Route::post('/manage-content/store', [ManageSiteController::class, 'store'])->name('store-content');
+
+    // Manage Page SEO Routes
+    Route::get('/manage-seo', [PageSeoController::class, 'index'])->name('manage-seo');
+    Route::post('/manage-seo/store', [PageSeoController::class, 'store'])->name('store-seo');
 
     // Testimonial Resource Route
     Route::resource('testimonial', TestimonialController::class);

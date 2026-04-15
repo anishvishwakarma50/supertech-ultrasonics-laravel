@@ -28,15 +28,16 @@ class ManageSiteController extends Controller
             'linkedin_url' => 'nullable|url',
             'youtube_url' => 'nullable|url',
             'instagram_url' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'nullable|mimes:jpeg,svg,png,jpg,gif|max:2048',
         ]);
 
         $siteContent = SiteContent::first();
 
+        // Sanitize HTML content
         $data = [
-            'company_history' => $request->company_history,
-            'what_we_do' => $request->what_we_do,
-            'about_company' => $request->about_company,
+            'company_history' => $this->sanitizeHtml($request->company_history),
+            'what_we_do' => $this->sanitizeHtml($request->what_we_do),
+            'about_company' => $this->sanitizeHtml($request->about_company),
             'contact_details' => $request->contact_details,
             'contact_number_2' => $request->contact_number_2,
             'email' => $request->email,
@@ -63,6 +64,27 @@ class ManageSiteController extends Controller
         }
 
         return redirect()->route('manage-content')->with('status', 'Site content updated successfully!');
+    }
+
+    /**
+     * Sanitize HTML content from CKEditor
+     * Allows safe tags like p, br, b, i, u, h1-h6, ul, ol, li, img, a, strong, em
+     */
+    private function sanitizeHtml($html)
+    {
+        if (!$html) return null;
+
+        $allowed_tags = [
+            'p', 'br', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'ul', 'ol', 'li', 'img', 'a', 'strong', 'em', 'span',
+            'blockquote', 'figure', 'figcaption'
+        ];
+
+        // Create allowed tags string
+        $allowed = '<' . implode('><', $allowed_tags) . '>';
+
+        // Strip tags not in allowed list
+        return strip_tags($html, $allowed);
     }
 }
 

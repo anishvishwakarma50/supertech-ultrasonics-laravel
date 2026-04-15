@@ -1,4 +1,4 @@
-@props(['content' => 'No Content Provided','title' => 'No Title'])
+@props(['content' => 'No Content Provided','title' => 'No Title', 'seo' => null])
 
 <!doctype html>
 <html lang={{ app()->getLocale() }}>
@@ -8,6 +8,23 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>{{ $title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {{-- SEO Meta Tags --}}
+        @if($seo)
+            @if($seo->meta_description)
+                <meta name="description" content="{{ $seo->meta_description }}">
+            @endif
+            @if($seo->og_title)
+                <meta property="og:title" content="{{ $seo->og_title }}">
+            @endif
+            @if($seo->og_description)
+                <meta property="og:description" content="{{ $seo->og_description }}">
+            @endif
+            @if($seo->og_image)
+                <meta property="og:image" content="{{ asset('storage/' . $seo->og_image) }}">
+                <meta property="og:image:type" content="image/jpeg">
+            @endif
+        @endif
 
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
         <!-- Place favicon.ico in the root directory -->

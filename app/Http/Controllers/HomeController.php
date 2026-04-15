@@ -11,6 +11,7 @@ use App\Models\SiteContent;
 use App\Models\Specification;
 use App\Models\Slider;
 use App\Models\Testimonial;
+use App\Models\PageSeo;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Http\Request;
 
@@ -162,6 +163,9 @@ class HomeController extends Controller
         // Fetch Sliders Data
         $sliders = Slider::orderByDesc('created_at')->limit(5)->get();
 
-        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries, 'siteData' => $siteData, 'sliders' => $sliders]);
+        // Fetch SEO Data for Home Page
+        $pageSeo = PageSeo::where('page_name', 'home')->first();
+
+        return view('index', ['products' => $products, 'testimonials' => $testimonials, 'industries' => $industries, 'siteData' => $siteData, 'sliders' => $sliders, 'seo' => $pageSeo]);
     }
 }

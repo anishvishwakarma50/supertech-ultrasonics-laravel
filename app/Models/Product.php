@@ -46,4 +46,10 @@ class Product extends Model
         // return $this->BelongsTo(Specification::class);
         return $this->belongsTo(Specification::class);
     }
+
+    // SEO Data
+    public function seo(): HasOne
+    {
+        return $this->hasOne(ProductSeo::class);
+    }
 }

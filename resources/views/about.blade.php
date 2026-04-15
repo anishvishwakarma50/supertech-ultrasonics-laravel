@@ -1,4 +1,4 @@
-<x-layout.app title="About Us - Super Tech Ultrasonic">
+<x-layout.app title="About Us - Super Tech Ultrasonic" :seo="$seo">
     <x-slot:content>
         <main>
             <!-- Page Title Start -->
@@ -23,7 +23,7 @@
                         <div class="about-content">
                             <h2 class="mb-4">Who We Are</h2>
                             @if($siteData && $siteData->about_company)
-                                <p class="mb-4">{{ $siteData->about_company }}</p>
+                                <div class="mb-4">{!! $siteData->about_company !!}</div>
                             @else
                                 <p class="text-muted mb-4">Company information not available at this time. Please check back later.</p>
                             @endif
@@ -32,7 +32,7 @@
 
                             <h2 class="mb-4">Our History</h2>
                             @if($siteData && $siteData->company_history)
-                                <p class="mb-4">{{ $siteData->company_history }}</p>
+                                <p class="mb-4">{!! $siteData->company_history !!}</p>
                             @else
                                 <p class="text-muted mb-4">Company history not available at this time.</p>
                             @endif
@@ -41,7 +41,7 @@
 
                             <h2 class="mb-4">What We Do</h2>
                             @if($siteData && $siteData->what_we_do)
-                                <p class="mb-4">{{ $siteData->what_we_do }}</p>
+                                <p class="mb-4">{!! $siteData->what_we_do !!}</p>
                             @else
                                 <p class="text-muted mb-4">Services information not available at this time.</p>
                             @endif
@@ -55,31 +55,6 @@
             </div>
             <!-- About Content End -->
 
-            <!-- Industries Section Start -->
-            @if($industries ?? false)
-            <div class="latest-services-area pt-125 pb-130" style="background-image: url({{ asset('assets/img/bg/industries.jpg') }});">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 offset-lg-3 offset-xl-3">
-                            <div class="section-title text-center mb-75">
-                                <span>Industries We Serve</span>
-                                <h1>Our Areas of Expertise</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        @foreach ($industries as $industry)
-                            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                                <div class="industry-card">
-                                    <h4>{{ $industry->name }}</h4>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            @endif
-            <!-- Industries Section End -->
         </main>
     </x-slot:content>
 </x-layout.app>
