@@ -19,7 +19,7 @@
                 <form id="siteContentForm" method="POST" action="{{ route('store-content') }}" enctype="multipart/form-data">
                     @csrf
 
-                    {{-- Company History --}}
+                    {{-- Company History Section --}}
                     <div class="mb-3">
                         <label class="form-label">Company History</label>
                         <div id="company_history_toolbar"></div>
@@ -29,7 +29,7 @@
                         <textarea id="company_history" name="company_history" hidden></textarea>
                     </div>
 
-                    {{-- What We Do --}}
+                    {{-- What We Do Section --}}
                     <div class="mb-3">
                         <label class="form-label">What We Do</label>
                         <div id="what_we_do_toolbar"></div>
