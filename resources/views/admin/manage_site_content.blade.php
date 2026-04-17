@@ -25,7 +25,7 @@
                         <div id="company_history_toolbar"></div>
                         <div id="company_history_editor" class="form-control" style="height:300px;overflow:auto;">
                             {!! $siteData->company_history !!}
-                        </div>
+                        </div> 
                         <textarea id="company_history" name="company_history" hidden></textarea>
                     </div>
 
