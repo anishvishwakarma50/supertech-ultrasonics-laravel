@@ -26,7 +26,7 @@
                                 <a href="{{ $siteData->youtube_url }}" target="_blank"><i class="fab fa-youtube"></i></a>
                             @endif
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
