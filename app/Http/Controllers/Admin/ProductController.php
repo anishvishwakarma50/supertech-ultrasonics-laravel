@@ -88,7 +88,7 @@ class ProductController extends Controller
                 $position++;
             }
         }
-
+ 
         // Handle SEO data
         $seoData = [
             'meta_title' => $request->meta_title,
