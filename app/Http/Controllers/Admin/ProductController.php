@@ -87,7 +87,7 @@ class ProductController extends Controller
                 
                 $position++;
             }
-        }
+        } 
  
         // Handle SEO data
         $seoData = [
