@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => 'admin@123'
+            'password' => 'Panipuri#2026'
         ]);
         
         // Slider Seeding

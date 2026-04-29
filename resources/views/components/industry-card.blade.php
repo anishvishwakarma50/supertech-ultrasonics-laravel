@@ -15,8 +15,8 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="features-wrapper mb-30">
                         <div class="features-img">
-                            {{-- <img src="{{ $industry->image }}" alt=""> --}}
-                            <img src="assets/img/features/01.jpg" alt="">
+                            <img src="{{ Storage::url($industry->image) }}" alt="">
+                            {{-- <img src="assets/img/features/01.jpg" alt=""> --}}
                             <div class="features-text">
                                 <h3><a href="#">{{ $industry->heading }}</a></h3>
                                 <a href="#">learn more <i class="far fa-long-arrow-right"></i></a>
