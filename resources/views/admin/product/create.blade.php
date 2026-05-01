@@ -67,7 +67,7 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Voltage (Watts)</label>
-                                        <input type="text" class="form-control" name="voltage" placeholder="e.g. 500W">
+                                        <input type="number" class="form-control" name="voltage" placeholder="e.g. 500">
                                     </div>
                                 </div>
 

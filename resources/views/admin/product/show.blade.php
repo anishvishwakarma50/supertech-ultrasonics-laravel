@@ -47,7 +47,7 @@
                                         </tr>
                                         <tr>
                                             <th>Description</th>
-                                            <td style="word-wrap: break-word; white-space: normal; max-width: 400px;">{{ $product->description }}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 400px;">{!! $product->description  !!}</td>
                                         </tr>
                                         <tr>
                                             <th colspan="2"><h5 class="mt-3">Specifications</h5></th>
