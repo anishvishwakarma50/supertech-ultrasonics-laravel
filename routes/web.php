@@ -1,5 +1,9 @@
 <?php
 
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use Illuminate\Support\Str;
+use App\Models\Product;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\admin\ManageSiteController;
 use App\Http\Controllers\Admin\PageSeoController;
@@ -27,6 +31,27 @@ Route::post('/contact/send', [ContactController::class, 'store'])->name('contact
 Route::get('/products', [ProductsPageController::class, 'index'])->name('products');
 Route::get('/product/{id}/{title}', [ProController::class, 'showProduct'])->name('product-details');
 Route::post('/product/{id}/inquiry', [InquiryController::class, 'store'])->name('product.inquiry');
+
+Route::get('/sitemap.xml', function () {
+
+    $sitemap = Sitemap::create()
+        ->add(Url::create('/')->setPriority(1.0))
+        ->add(Url::create('/about')->setPriority(0.8))
+        ->add(Url::create('/contact')->setPriority(0.7))
+        ->add(Url::create('/products')->setPriority(0.9));
+
+    $products = Product::all();
+
+    foreach ($products as $product) {
+        $sitemap->add(
+            Url::create("/product/{$product->id}/" . Str::slug($product->title))
+                ->setPriority(0.8)
+                ->setLastModificationDate($product->updated_at)
+        );
+    }
+
+    return $sitemap->toResponse(request());
+});
 
 //#################################################################
 // admin routes
