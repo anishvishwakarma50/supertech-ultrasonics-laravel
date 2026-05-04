@@ -5,7 +5,7 @@ use Spatie\Sitemap\Tags\Url;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\admin\ManageSiteController;
+use App\Http\Controllers\Admin\ManageSiteController;
 use App\Http\Controllers\Admin\PageSeoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryController;
