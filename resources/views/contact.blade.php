@@ -172,7 +172,7 @@
                 <div class="container-fluid p-0">
                     <div class="row no-gutters">
                         <div class="col-xl-12">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.8860234624903!2d72.0!3d25.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDAwJzAwLjAiTiA3MsKwMDAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.4131818454634!2d72.85232997467276!3d19.394545741896206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7af6f4fb27d55%3A0x6d679ef4af27676e!2sSUPER%20TECH%20ULTRASONIC!5e0!3m2!1sen!2sin!4v1777662614538!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

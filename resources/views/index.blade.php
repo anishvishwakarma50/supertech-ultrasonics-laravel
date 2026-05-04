@@ -229,23 +229,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        {{-- here i stopped after creating component of product-card --}}
-                        @foreach ($products as $product)
-                            <x-product-card :$product />
-                        @endforeach
-                        
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-4">
-                            <div class="blog-wrapper mb-30 d-flex flex-end">
-                                <a href="blog-details.html" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">
-                                    <span class="text-dark">More Products</span> 
-                                    <i class="dripicons-arrow-thin-right"></i>
-                                </a>
+                    @if ($products->count() > 0)
+                        <div class="row">
+                            {{-- here i stopped after creating component of product-card --}}
+                            @foreach ($products as $product)
+                                <x-product-card :$product />
+                            @endforeach
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-4">
+                                <div class="blog-wrapper mb-30 d-flex flex-end">
+                                    <a href="blog-details.html" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">
+                                        <span class="text-dark">More Products</span> 
+                                        <i class="dripicons-arrow-thin-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="alert alert-info text-center p-5">
+                                    <h4>No Products Available</h4>
+                                    <p>We're currently updating our product catalog. Please check back soon!</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <!-- blog-area-end -->

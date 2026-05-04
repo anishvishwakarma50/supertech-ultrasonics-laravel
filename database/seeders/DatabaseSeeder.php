@@ -34,26 +34,26 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // Slider Seeding
-        Slider::factory(3)->create();
+        // Slider::factory(3)->create();
 
         // Industry Seeding
-        Industry::factory(5)->create();
+        // Industry::factory(5)->create();
 
         // Site content factory
-        SiteContent::factory()->create();
+        // SiteContent::factory()->create();
 
         // Testimonial Factory
-        Testimonial::factory(5)->create();
+        // Testimonial::factory(5)->create();
 
         // Product, Product_Image, Specification, Inquiry and Lead Factory
-        Inquiry::factory(3)
-        ->for(Lead::factory())
-        ->for(Product::factory()
-                ->has(ProductImage::factory()
-                ->count(5)
-                ->Sequence(fn(Sequence $sequence) => ['position' => $sequence->index % 5 + 1])
-                , 'images')
-                ->for(Specification::factory())
-        )->create();
+        // Inquiry::factory(3)
+        // ->for(Lead::factory())
+        // ->for(Product::factory()
+        //         ->has(ProductImage::factory()
+        //         ->count(5)
+        //         ->Sequence(fn(Sequence $sequence) => ['position' => $sequence->index % 5 + 1])
+        //         , 'images')
+        //         ->for(Specification::factory())
+        // )->create();
     }
 }
