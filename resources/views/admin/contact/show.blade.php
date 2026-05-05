@@ -86,6 +86,7 @@
                                     Delete Message
                                 </button>
                             </form>
+                            <a href="https://wa.me/{{ $contact->phone }}"></a><button type="submit" class="btn btn-sm" style="background-color: #25d366">Whatsapp</button>
                         </div>
                     </div>
                 </div>

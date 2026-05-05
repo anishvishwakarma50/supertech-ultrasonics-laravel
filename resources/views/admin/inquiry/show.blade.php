@@ -64,8 +64,11 @@
                             </div>
 
                             <div class="row mt-4">
-                                <div class="col-12">
+                                <div class="col-3">
                                     <a href="{{ route('inquiry.index') }}" class="btn btn-secondary">Back to Inquiries</a>
+                                </div>
+                                <div class="col-3">
+                                    <a href="https://wa.me/{{ $inquiry->lead->phone_no }}" target="_blank" class="btn" style="background-color: #25d366">Whatsapp</a>
                                 </div>
                             </div>
                         </div>
