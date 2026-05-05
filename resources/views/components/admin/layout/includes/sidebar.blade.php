@@ -20,10 +20,17 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('testimonial.index') }}">
-        <i class="icon-star menu-icon"></i>
+      <a class="nav-link" data-bs-toggle="collapse" href="#man-tes" aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-layout menu-icon"></i>
         <span class="menu-title">Testimonials</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="man-tes">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{ route('testimonial.create') }}">Add Testimonials</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('testimonial.index') }}">Manage Testimonials</a></li>
+        </ul>
+      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ route('inquiry.index') }}">
