@@ -88,6 +88,20 @@
                             </form>
                             <a href="https://wa.me/{{ $contact->phone }}"></a><button type="submit" class="btn btn-sm" style="background-color: #25d366">Whatsapp</button>
                         </div>
+                        <h5 class="card-title mb-3 mt-3">Additional Note</h5>
+                        <div class="row">
+                            <form action="{{ route('contact.update-note', $contact->id) }}" method="POST" class="">
+                                @csrf
+                                <div class="col">
+                                    <textarea name="additional_note" id="additional_note" cols="50" rows="10">{{ $contact->additional_note }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-info btn-sm" 
+                                        onclick="return confirm('Are you sure you want to Uppdate this contact?')">
+                                    Update
+                                </button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

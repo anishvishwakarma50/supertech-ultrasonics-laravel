@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ContactController extends Controller
 {
@@ -13,6 +14,8 @@ class ContactController extends Controller
      */
     public function index(Request $request)
     {
+        // Contact::factory()->count(3)->create();
+
         $query = Contact::query();
 
         // Search functionality
@@ -67,6 +70,20 @@ class ContactController extends Controller
 
         return redirect()->route('admin.contact.index')
                         ->with('success', 'Contact deleted successfully.');
+    }
+
+    /**
+     * Update the Note of a Contact
+     */
+    public function updateNote(Contact $contact, Request $request)
+    {
+        $additional_note = $request->validate([
+            'additional_note' => 'required'
+        ]);
+        // dd($contact);
+        $contact->update($additional_note);
+        // dd($data);
+        return redirect()->back()->with('success', 'Contact Updated Successfully');
     }
 
     /**
