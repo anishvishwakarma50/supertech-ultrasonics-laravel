@@ -109,6 +109,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Contact Resource Route
     Route::resource('contact', AdminContactController::class)->only(['index', 'show', 'destroy']);
+    Route::post('/contact/{contact}/update-note', [AdminContactController::class, 'updateNote'])->name('contact.update-note');
     Route::post('/contact/{contact}/mark-as-read', [AdminContactController::class, 'markAsRead'])->name('contact.mark-as-read');
     Route::post('/contact/{contact}/mark-as-unread', [AdminContactController::class, 'markAsUnread'])->name('contact.mark-as-unread');
     Route::post('/contact/delete-all', [AdminContactController::class, 'deleteAll'])->name('contact.delete-all');
