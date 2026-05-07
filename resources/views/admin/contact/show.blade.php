@@ -90,7 +90,7 @@
                         </div>
                         <h5 class="card-title mb-3 mt-3">Additional Note</h5>
                         <div class="row">
-                            <form action="{{ route('contact.update-note', $contact->id) }}" method="POST" class="">
+                            <form action="{{ route('contact.update-note', $contact->id) }}" method="POST">
                                 @csrf
                                 <div class="col">
                                     <textarea name="additional_note" id="additional_note" cols="50" rows="10">{{ $contact->additional_note }}</textarea>
