@@ -83,7 +83,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" 
                                         onclick="return confirm('Are you sure you want to delete this contact?')">
-                                    Delete Message
+                                    Delete Message 
                                 </button>
                             </form>
                             <a href="https://wa.me/{{ $contact->phone }}"></a><button type="submit" class="btn btn-sm" style="background-color: #25d366">Whatsapp</button>
