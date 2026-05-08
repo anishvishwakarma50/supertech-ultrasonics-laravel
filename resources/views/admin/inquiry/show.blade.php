@@ -55,7 +55,7 @@
                                     <h5>Inquiry Details</h5>
                                     <div class="card">
                                         <div class="card-body">
-                                            <p><strong>Description:</strong></p>
+                                            <p><strong>Description :</strong></p>
                                             <p>{{ $inquiry->description }}</p>
                                             <p><strong>Inquiry Date:</strong> {{ $inquiry->created_at->format('d M Y H:i') }}</p>
                                         </div>
