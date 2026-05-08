@@ -22,6 +22,7 @@ class ContactFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'subject' => $this->faker->sentence(),
             'message' => $this->faker->paragraph(),
+            'additional_note' => $this->faker->paragraph(),
             'is_read' => false,
         ];
     }

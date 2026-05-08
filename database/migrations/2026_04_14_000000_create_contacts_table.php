@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('subject');
             $table->longText('message');
             $table->boolean('is_read')->default(false);
+            $table->string('additional_note', 15000)->nullable();
             $table->timestamps();
             
             // Index for searching
