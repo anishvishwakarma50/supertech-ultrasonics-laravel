@@ -1,7 +1,8 @@
 <x-admin.layout.app title="Edit Product">
     <x-slot:content>
 
-        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/decoupled-document/ckeditor.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.js"></script>
 
         <div class="content-wrapper">
             <div class="row">
@@ -26,72 +27,10 @@
                                         value="{{ old('title', $product->title) }}" required>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Minimum Order Quantity (MOQ) *</label>
-                                    <input type="text" class="form-control" name="moq"
-                                        value="{{ old('moq', $product->moq) }}" required>
-                                </div>
-
                                 {{-- DESCRIPTION --}}
                                 <div class="mb-4">
                                     <label class="form-label">Product Description *</label>
-                                    <div id="description_toolbar"></div>
-                                    <div id="description_editor" class="form-control"
-                                        style="height:300px;overflow:auto;">
-                                        {!! old('description', $product->description) !!}
-                                    </div>
-                                    <textarea id="description" name="description" hidden></textarea>
-                                </div>
-
-                                {{-- SPECIFICATION --}}
-                                <h5 class="mb-3">Specifications</h5>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Usage</label>
-                                        <input type="text" class="form-control" name="usage"
-                                            value="{{ old('usage', $product->specification->usage ?? '') }}">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Material</label>
-                                        <input type="text" class="form-control" name="material"
-                                            value="{{ old('material', $product->specification->material ?? '') }}">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Weight (kg)</label>
-                                        <input type="number" class="form-control" name="weight"
-                                            value="{{ old('weight', $product->specification->weight ?? '') }}">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Voltage (Watts)</label>
-                                        <input type="text" class="form-control" name="voltage"
-                                            value="{{ old('voltage', $product->specification->voltage ?? '') }}">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Color</label>
-                                        <input type="text" class="form-control" name="color"
-                                            value="{{ old('color', $product->specification->color ?? '') }}">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Frequency</label>
-                                        <input type="text" class="form-control" name="frequency"
-                                            value="{{ old('frequency', $product->specification->frequency ?? '') }}">
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Temperature (°C)</label>
-                                    <input type="number" step="0.01" class="form-control" name="temperature"
-                                        value="{{ old('temperature', $product->specification->temperature ?? '') }}">
+                                    <textarea id="description" class="product-description" name="description">{!! old('description', $product->description) !!}</textarea>
                                 </div>
 
                                 {{-- SEO --}}
@@ -197,40 +136,49 @@
         </div>
 
         <script>
-            let editor;
+            const editor = Jodit.make('#description', {
+                height: 500,
 
-            function initEditor(editorId, toolbarId) {
-                return DecoupledEditor.create(document.querySelector(editorId), {
-                    toolbar: [
-                        'heading', '|',
-                        'bold', 'italic', 'underline',
-                        '|',
-                        'bulletedList', 'numberedList', 'blockquote',
-                        '|',
-                        'link',
-                        '|',
-                        'undo', 'redo'
-                    ],
-                    heading: {
-                        options: [
-                            { model: 'paragraph', title: 'Paragraph' },
-                            { model: 'heading2', view: 'h2', title: 'Heading 2' },
-                            { model: 'heading3', view: 'h3', title: 'Heading 3' }
-                        ]
-                    },
-                    placeholder: 'Update product description...'
-                }).then(ed => {
-                    document.querySelector(toolbarId).appendChild(ed.ui.view.toolbar.element);
-                    return ed;
-                });
-            }
+                buttons: [
+                    'source',
+                    '|',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    '|',
+                    'ul',
+                    'ol',
+                    '|',
+                    'font',
+                    'fontsize',
+                    'brush',
+                    'paragraph',
+                    '|',
+                    'align',
+                    '|',
+                    'table',
+                    'link',
+                    'image',
+                    'video',
+                    '|',
+                    'hr',
+                    'eraser',
+                    'copyformat',
+                    '|',
+                    'fullsize',
+                    'print',
+                    'preview'
+                ],
 
-            (async () => {
-                editor = await initEditor('#description_editor', '#description_toolbar');
-            })();
+                uploader: {
+                    insertImageAsBase64URI: true
+                },
 
-            document.querySelector('form').addEventListener('submit', function () {
-                document.getElementById('description').value = editor.getData();
+                toolbarAdaptive: false,
+                showCharsCounter: true,
+                showWordsCounter: true,
+                showXPathInStatusbar: false
             });
         </script>
 

@@ -10,7 +10,7 @@ class ProductsPageController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['images', 'specification'])->paginate(12);
+        $products = Product::with(['images'])->paginate(12);
         $pageSeo = PageSeo::where('page_name', 'products')->first();
         return view('products', ['products' => $products, 'seo' => $pageSeo]);
     }

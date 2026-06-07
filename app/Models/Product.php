@@ -15,9 +15,7 @@ class Product extends Model
 
     protected $fillable = [
         'title',
-        'description',
-        'moq',
-        'specification_id'
+        'description'
     ];
 
     // Images of product
@@ -41,11 +39,11 @@ class Product extends Model
     }
 
     // Specification
-    public function specification(): BelongsTo
-    {
-        // return $this->BelongsTo(Specification::class);
-        return $this->belongsTo(Specification::class);
-    }
+    // public function specification(): BelongsTo
+    // {
+    //     // return $this->BelongsTo(Specification::class);
+    //     return $this->belongsTo(Specification::class);
+    // }
 
     // SEO Data
     public function seo(): HasOne

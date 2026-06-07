@@ -23,6 +23,25 @@
     <link rel="stylesheet" href="{{ asset('admin/assets2/css/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/assets2/images/favicon.png') }}" />
+
+    <style>
+      .product-description table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 15px;
+      }
+
+      .product-description table,
+      .product-description th,
+      .product-description td {
+          border: 1px solid #000;
+      }
+
+      .product-description th,
+      .product-description td {
+          padding: 8px;
+      }
+    </style>
   </head>
   <body>
     {{-- main body content --}}

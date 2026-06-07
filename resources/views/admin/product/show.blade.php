@@ -42,43 +42,8 @@
                                             <td><strong>{{ $product->title }}</strong></td>
                                         </tr>
                                         <tr>
-                                            <th>MOQ</th>
-                                            <td>{{ $product->moq }}</td>
-                                        </tr>
-                                        <tr>
                                             <th>Description</th>
-                                            <td style="word-wrap: break-word; white-space: normal; max-width: 400px;">{!! $product->description  !!}</td>
-                                        </tr>
-                                        <tr>
-                                            <th colspan="2"><h5 class="mt-3">Specifications</h5></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Usage</th>
-                                            <td>{{ $product->specification->usage }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Material</th>
-                                            <td>{{ $product->specification->material }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Weight</th>
-                                            <td>{{ $product->specification->weight }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Voltage</th>
-                                            <td>{{ $product->specification->voltage }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Color</th>
-                                            <td>{{ $product->specification->color }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Frequency</th>
-                                            <td>{{ $product->specification->frequency }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Temperature</th>
-                                            <td>{{ $product->specification->temperature }}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 400px;" class="product-description"><div class="product-description">{!! $product->description  !!}</div></td>
                                         </tr>
                                         <tr>
                                             <th>Created At</th>
