@@ -41,7 +41,7 @@
         <div class="blog-area pt-40 pb-80">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12 px-2">
                         <article class="postbox post format-image mb-40">
                             <x-product-carausel :images="$product_data->images" />
 
@@ -52,7 +52,7 @@
                                     <span><a href="#"><i class="far fa-user"></i> Diboli B. Joly</a></span>
                                     <span><a href="#"><i class="far fa-comments"></i> 23 Comments</a></span>
                                 </div> --}}
-                                <div class="post-text mb-20">
+                                <div class="post-text mb-20 product-description">
                                     <div>{!! $product_data->description !!}</div>
                                 </div>
                                 {{-- <div class="row mt-50">
@@ -227,89 +227,6 @@
                                 </form>
                             </div>
                         </article>
-                    </div>
-                    <div class="col-lg-4">
-                        <!-- <div class="widget mb-40">
-                            <div class="widget-title-box mb-30">
-                                <h3 class="widget-title">Search Objects</h3>
-                            </div>
-                            <form class="search-form">
-                                <input type="text" placeholder="Search your keyword...">
-                                <button type="submit"><i class="fas fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="widget mb-40">
-                            <div class="widget-title-box mb-30">
-                                <h3 class="widget-title">Popular Feeds</h3>
-                            </div>
-                            <ul class="recent-posts">
-                                <li>
-                                    <div class="widget-posts-image">
-                                        <a href="#"><img src="assets/img/blog/sm-01.html" alt=""></a>
-                                    </div>
-                                    <div class="widget-posts-body">
-                                        <h6 class="widget-posts-title"><a href="#">How Frontend Developers Can Help To Bridge</a></h6>
-                                        <div class="widget-posts-meta">October 18, 2018 </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="widget-posts-image">
-                                        <a href="#"><img src="assets/img/blog/sm-02.html" alt=""></a>
-                                    </div>
-                                    <div class="widget-posts-body">
-                                        <h6 class="widget-posts-title"><a href="#">Everything You Need To Know About Transa</a></h6>
-                                        <div class="widget-posts-meta">january 24, 2018 </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="widget-posts-image">
-                                        <a href="#"><img src="assets/img/blog/sm-03.html" alt=""></a>
-                                    </div>
-                                    <div class="widget-posts-body">
-                                        <h6 class="widget-posts-title"><a href="#">How Frontend Developers Can Help To Bridge</a></h6>
-                                        <div class="widget-posts-meta">October 28, 2018 </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> -->
-                        {{-- Specification --}}
-                        <x-product-specification :specification="$product_data->specification" />
-                        {{-- <div class="widget mb-40">
-                            <div class="widget-title-box mb-30">
-                                <h3 class="widget-title">Social Profile</h3>
-                            </div>
-                            <div class="social-profile">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-behance"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="widget mb-40">
-                            <div class="widget-title-box mb-30">
-                                <h3 class="widget-title">Instagram Feeds</h3>
-                            </div>
-                            <div class="tag">
-                                <a href="#">Popular</a>
-                                <a href="#">desgin</a>
-                                <a href="#">usability</a>
-                                <a href="#">develop</a>
-                                <a href="#">consult</a>
-                                <a href="#">icon</a>
-                                <a href="#">HTML</a>
-                                <a href="#">ux</a>
-                                <a href="#">business</a>
-                                <a href="#">kit</a>
-                                <a href="#">keyboard</a>
-                                <a href="#">tech</a>
-                            </div>
-                        </div> --}}
-                        <div class="widget mb-40 p-0 b-0">
-                            <div class="banner-widget">
-                                <a href="#"><img src="{{ asset('assets/img/blog/banner.html') }}" alt=""></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

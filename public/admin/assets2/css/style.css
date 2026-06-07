@@ -25693,3 +25693,21 @@ table.dataTable tbody td.select-checkbox:after {
   }
 }
 /*# sourceMappingURL=maps/style.css.map */
+
+/* Product description CSS */
+.product-description table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 15px !important;
+}
+
+.product-description table,
+.product-description th,
+.product-description td {
+    border: 1px solid #000 !important;
+}
+
+.product-description th,
+.product-description td {
+    padding: 8px !important;
+}

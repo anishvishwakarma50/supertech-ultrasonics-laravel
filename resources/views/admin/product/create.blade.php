@@ -1,7 +1,8 @@
 <x-admin.layout.app title="Add Product">
     <x-slot:content>
 
-        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/decoupled-document/ckeditor.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.min.js"></script>
 
         <div class="content-wrapper">
             <div class="row justify-content-center">
@@ -19,75 +20,16 @@
                                 {{-- BASIC DETAILS --}}
                                 <h5 class="mb-3">Basic Details</h5>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Machine Name *</label>
-                                        <input type="text" class="form-control" name="title"
-                                            placeholder="Enter machine name" required>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Minimum Order Quantity (MOQ) *</label>
-                                        <input type="text" class="form-control" name="moq" placeholder="e.g. 2 units"
-                                            required>
-                                    </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Machine Name *</label>
+                                    <input type="text" class="form-control" name="title"
+                                        placeholder="Enter machine name" required>
                                 </div>
 
                                 {{-- DESCRIPTION --}}
                                 <div class="mb-4">
                                     <label class="form-label">Product Description *</label>
-                                    <div id="description_toolbar"></div>
-                                    <div id="description_editor" class="form-control"
-                                        style="height:300px;overflow:auto;"></div>
-                                    <textarea id="description" name="description" hidden></textarea>
-                                </div>
-
-                                {{-- SPECIFICATION --}}
-                                <h5 class="mb-3">Specifications</h5>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Usage</label>
-                                        <input type="text" class="form-control" name="usage"
-                                            placeholder="e.g. Industrial cleaning">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Material</label>
-                                        <input type="text" class="form-control" name="material"
-                                            placeholder="e.g. Stainless Steel">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Weight (kg)</label>
-                                        <input type="number" class="form-control" name="weight" placeholder="e.g. 12">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Voltage (Watts)</label>
-                                        <input type="number" class="form-control" name="voltage" placeholder="e.g. 500">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Color</label>
-                                        <input type="text" class="form-control" name="color" placeholder="e.g. Silver">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Frequency</label>
-                                        <input type="text" class="form-control" name="frequency"
-                                            placeholder="e.g. 40kHz">
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Temperature (°C)</label>
-                                    <input type="number" step="0.01" class="form-control" name="temperature"
-                                        placeholder="e.g. 60">
+                                    <textarea id="description" name="description"></textarea>
                                 </div>
 
                                 {{-- SEO --}}
@@ -144,40 +86,49 @@
         </div>
 
         <script>
-            let editor;
+            const editor = Jodit.make('#description', {
+                height: 500,
 
-            function initEditor(editorId, toolbarId) {
-                return DecoupledEditor.create(document.querySelector(editorId), {
-                    toolbar: [
-                        'heading', '|',
-                        'bold', 'italic', 'underline',
-                        '|',
-                        'bulletedList', 'numberedList', 'blockquote',
-                        '|',
-                        'link',
-                        '|',
-                        'undo', 'redo'
-                    ],
-                    heading: {
-                        options: [
-                            { model: 'paragraph', title: 'Paragraph' },
-                            { model: 'heading2', view: 'h2', title: 'Heading 2' },
-                            { model: 'heading3', view: 'h3', title: 'Heading 3' }
-                        ]
-                    },
-                    placeholder: 'Write product description here...'
-                }).then(ed => {
-                    document.querySelector(toolbarId).appendChild(ed.ui.view.toolbar.element);
-                    return ed;
-                });
-            }
+                buttons: [
+                    'source',
+                    '|',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    '|',
+                    'ul',
+                    'ol',
+                    '|',
+                    'font',
+                    'fontsize',
+                    'brush',
+                    'paragraph',
+                    '|',
+                    'align',
+                    '|',
+                    'table',
+                    'link',
+                    'image',
+                    'video',
+                    '|',
+                    'hr',
+                    'eraser',
+                    'copyformat',
+                    '|',
+                    'fullsize',
+                    'print',
+                    'preview'
+                ],
 
-            (async () => {
-                editor = await initEditor('#description_editor', '#description_toolbar');
-            })();
+                uploader: {
+                    insertImageAsBase64URI: true
+                },
 
-            document.getElementById('productForm').addEventListener('submit', function () {
-                document.getElementById('description').value = editor.getData();
+                toolbarAdaptive: false,
+                showCharsCounter: true,
+                showWordsCounter: true,
+                showXPathInStatusbar: false
             });
         </script>
 

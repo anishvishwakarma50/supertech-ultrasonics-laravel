@@ -20,8 +20,8 @@ class Specification extends Model
         'temperature'
     ];
 
-    public function products(): HasMany
-    {
-        return $this->hasMany(Product::class, 'specification_id');
-    }
+    // public function products(): HasMany
+    // {
+    //     return $this->hasMany(Product::class, 'specification_id');
+    // }
 }
