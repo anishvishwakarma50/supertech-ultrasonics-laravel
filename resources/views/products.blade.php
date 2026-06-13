@@ -50,7 +50,7 @@
             <!-- Products Grid End -->
 
             <!-- CTA Section Start -->
-            <div class="cta-area pt-100 pb-70" style="background-image: url({{ asset('assets/img/bg/cta.jpg') }});">
+            <div class="cta-area pt-100 pb-70" style="background-image: url({{ asset('assets/img/bg/pattern.jpg') }});">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-9 col-lg-8">
