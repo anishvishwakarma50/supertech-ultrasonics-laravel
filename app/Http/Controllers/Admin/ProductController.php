@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Specification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Eager load specification, images, and seo to avoid N+1 queries
-        $products = Product::with(['specification', 'images', 'seo'])->orderByDesc('created_at')->get();
+        // Eager load images and seo to avoid N+1 queries
+        $products = Product::with(['images', 'seo'])->orderByDesc('created_at')->get();
         // dd($products);
         return view("admin.product.index", ['products' => $products]);
     }
@@ -38,14 +37,6 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'moq' => 'required',
-            'usage' => 'required',
-            'material' => 'required',
-            'weight' => 'required',
-            'voltage' => 'required',
-            'color' => 'required',
-            'frequency' => 'required',
-            'temperature' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120', // max 5MB
             'meta_title' => 'nullable|string|max:60',
@@ -55,21 +46,9 @@ class ProductController extends Controller
             'og_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
-        $curr_spec = Specification::create($request->only([
-            'usage',
-            'material',
-            'weight',
-            'voltage',
-            'color',
-            'frequency',
-            'temperature',
-        ]));
-
         $product = Product::create([
             'title' => $request->title,
             'description' => $this->sanitizeHtml($request->description),
-            'moq' => $request->moq,
-            'specification_id' => $curr_spec->id
         ]);
 
         // Handle image uploads
@@ -113,7 +92,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
+        $product = Product::with(['images', 'seo'])->findOrFail($id);
         return view("admin.product.show", ['product' => $product]);
     }
 
@@ -122,7 +101,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
+        $product = Product::with(['images', 'seo'])->findOrFail($id);
         return view("admin.product.edit", ['product' => $product]);
     }
 
@@ -131,20 +110,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $product = Product::with(['specification', 'images', 'seo'])->findOrFail($id);
+        $product = Product::with(['images', 'seo'])->findOrFail($id);
 
         // Validate input
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'moq' => 'required',
-            'usage' => 'required',
-            'material' => 'required',
-            'weight' => 'required',
-            'voltage' => 'required',
-            'color' => 'required',
-            'frequency' => 'required',
-            'temperature' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120', // max 5MB
             'meta_title' => 'nullable|string|max:60',
@@ -159,19 +130,7 @@ class ProductController extends Controller
         $product->update([
             'title' => $request->title,
             'description' => $this->sanitizeHtml($request->description),
-            'moq' => $request->moq,
         ]);
-
-        // Update specification
-        $product->specification->update($request->only([
-            'usage',
-            'material',
-            'weight',
-            'voltage',
-            'color',
-            'frequency',
-            'temperature',
-        ]));
 
         // Handle new image uploads
         if ($request->hasFile('images')) {
@@ -260,9 +219,23 @@ class ProductController extends Controller
         if (!$html) return null;
 
         $allowed_tags = [
-            'p', 'br', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-            'ul', 'ol', 'li', 'img', 'a', 'strong', 'em', 'span',
-            'blockquote', 'figure', 'figcaption'
+            'p', 'br', 'b', 'i', 'u',
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'ul', 'ol', 'li',
+            'img', 'a',
+            'strong', 'em',
+            'span',
+            'blockquote',
+            'figure',
+            'figcaption',
+
+            'table',
+            'thead',
+            'tbody',
+            'tfoot',
+            'tr',
+            'th',
+            'td'
         ];
 
         // Create allowed tags string

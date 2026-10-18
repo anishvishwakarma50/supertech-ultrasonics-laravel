@@ -240,7 +240,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-3 col-md-4">
                                 <div class="blog-wrapper mb-30 d-flex flex-end">
-                                    <a href="blog-details.html" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">
+                                    <a href="{{ route('products') }}" style="background-color:#ff9514;" class="btn text-black btn-rounded m-2">
                                         <span class="text-dark">More Products</span> 
                                         <i class="dripicons-arrow-thin-right"></i>
                                     </a>
@@ -276,7 +276,7 @@
                         <div class="col-xl-12">
                             <div class="latest-services-wrapper pos-rel">
                                 <div class="latest-services-img">
-                                    <img src="assets/img/machines/Single_Chember.png" style="width:51rem;" alt="">
+                                    <img src="assets/img/main/main.webp" style="width:51rem;" alt="">
                                 </div>
                                 <div class="latest-services-text">
                                     <h3>Ultrasonic Cleaning Machine Manufacturers</h3>
@@ -319,7 +319,7 @@
             </div>
 
             <!-- cta start  -->
-            <div class="cta-area pt-100 pb-70" style="background-image:url(assets/img/bg/cta.jpg)">
+            <div class="cta-area pt-100 pb-70" style="background-image:url(assets/img/bg/pattern.jpg)">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-9 col-lg-8">

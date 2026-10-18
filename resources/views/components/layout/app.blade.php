@@ -45,6 +45,24 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/rs/css/settings.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/rs/css/layers.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/rs/css/navigation.css')}}">
+        <style>
+            .product-description table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 15px;
+            }
+
+            .product-description table,
+            .product-description th,
+            .product-description td {
+                border: 1px solid #000;
+            }
+
+            .product-description th,
+            .product-description td {
+                padding: 8px;
+            }
+        </style>
     </head>
     <body>
 

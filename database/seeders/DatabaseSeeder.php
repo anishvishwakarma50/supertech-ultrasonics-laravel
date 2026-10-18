@@ -45,15 +45,14 @@ class DatabaseSeeder extends Seeder
         // Testimonial Factory
         // Testimonial::factory(5)->create();
 
-        // Product, Product_Image, Specification, Inquiry and Lead Factory
+        // Product, Product_Image, Inquiry and Lead Factory
         // Inquiry::factory(3)
         // ->for(Lead::factory())
         // ->for(Product::factory()
         //         ->has(ProductImage::factory()
         //         ->count(5)
         //         ->Sequence(fn(Sequence $sequence) => ['position' => $sequence->index % 5 + 1])
-        //         , 'images')
-        //         ->for(Specification::factory())
+        //         , 'images'))
         // )->create();
     }
 }

@@ -27,11 +27,6 @@
                     <tr>
                         <th>Image</th>
                         <th>Product Name</th>
-                        <th>MOQ</th>
-                        <th>Weight</th>
-                        <th>Frequency</th>
-                        <th>Voltage</th>
-                        <th>Color</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -47,11 +42,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $product->title }}</td>
-                                <td>{{ $product->moq }}</td>
-                                <td>{{ $product->specification->weight }}</td>
-                                <td>{{ $product->specification->frequency }}</td>
-                                <td>{{ $product->specification->voltage }}</td>
-                                <td>{{ $product->specification->color }}</td>
                                 <td>
                                     <span class="badge badge-success status-badge">Active</span>
                                 </td>
