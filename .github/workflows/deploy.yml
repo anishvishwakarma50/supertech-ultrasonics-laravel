@@ -1,0 +1,55 @@
+name: Deploy Laravel Application
+
+on:
+  push:
+    branches:
+      - main # Change to 'dev' if you want automatic deployment on pushing to dev
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
+
+jobs:
+  deploy:
+    name: Deploy to Server via SSH
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploying application via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            echo "🚀 Starting deployment on remote server..."
+            
+            # 1. Navigate to the project directory
+            cd ${{ secrets.PROJECT_PATH }}
+            
+            # 2. Put application into maintenance mode
+            php artisan down || true
+            
+            # 3. Pull latest changes from git
+            git fetch origin main
+            git reset --hard origin/main
+            
+            # 4. Install/update PHP dependencies (no dev dependencies)
+            composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+            
+            # 5. Build frontend assets (Tailwind / Vite)
+            npm install --no-audit
+            npm run build
+            
+            # 6. Run database migrations
+            php artisan migrate --force
+            
+            # 7. Clear and optimize Laravel caches
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            
+            # 8. Bring application back online
+            php artisan up
+            
+            echo "✅ Deployment finished successfully!"
